@@ -8,6 +8,7 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private ClickerView _clickerView;
     [SerializeField] private UpgradesController _upgradesController;
     [SerializeField] private SaveSystem _saveSystem;
+    [SerializeField] private ChocolateRain _chocolateRain;
 
     protected override void Configure(IContainerBuilder builder)
     {
@@ -15,6 +16,7 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterComponent(_clickerView);
         builder.RegisterComponent(_upgradesController);
         builder.RegisterComponent(_saveSystem);
+        builder.RegisterComponent(_chocolateRain);
         builder.RegisterEntryPoint<GameEntryPoint>();
     }
 }
