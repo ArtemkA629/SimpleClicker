@@ -8,7 +8,7 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private ClickerView _clickerView;
     [SerializeField] private UpgradesController _upgradesController;
     [SerializeField] private SaveSystem _saveSystem;
-    [SerializeField] private ChocolateRain _chocolateRain;
+    [SerializeField] private ChocolateRainPool _chocolateRain;
 
     protected override void Configure(IContainerBuilder builder)
     {

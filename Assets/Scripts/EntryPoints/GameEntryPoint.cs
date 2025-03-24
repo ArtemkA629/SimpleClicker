@@ -5,7 +5,7 @@ public class GameEntryPoint : IStartable
 {
     [Inject] private Clicker _clicker;
     [Inject] private SaveSystem _saveSystem;
-    [Inject] private ChocolateRain _chocolateRain;
+    [Inject] private ChocolateRainPool _chocolateRain;
 
     public void Start()
     {

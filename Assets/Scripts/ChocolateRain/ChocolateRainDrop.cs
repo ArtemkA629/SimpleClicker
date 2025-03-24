@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class ChocolateRainDrop : MonoBehaviour
     [SerializeField] private float _speed = 10f;
 
     private RectTransform _boundaries;
+
+    public event Action<ChocolateRainDrop> Destroyed;
 
     public void Init(Vector3 position, Quaternion rotation, RectTransform boundaries)
     {
@@ -27,7 +30,7 @@ public class ChocolateRainDrop : MonoBehaviour
     public IEnumerator WaitUntilDie()
     {
         yield return new WaitUntil(() => IsElementOutOfBoundaries(_rectTransform, _boundaries));
-        Destroy(gameObject);
+        Destroyed?.Invoke(this);
     }
 
     private bool IsElementOutOfBoundaries(RectTransform element, RectTransform boundaries)

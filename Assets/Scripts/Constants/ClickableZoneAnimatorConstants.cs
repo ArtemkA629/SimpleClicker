@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class ClickableZoneAnimatorConstants : MonoBehaviour
+public static class ClickableZoneAnimatorConstants
 {
     public const string ClickedTrigger = "Clicked";
 }
