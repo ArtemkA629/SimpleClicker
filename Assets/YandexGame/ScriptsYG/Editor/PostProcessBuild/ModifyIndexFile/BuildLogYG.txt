@@ -1,0 +1,2 @@
+Build path: C:/Program Files/GitHub/SimpleClicker/Builds/Webgl
+Build number: 21

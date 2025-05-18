@@ -40,11 +40,13 @@ public class ChocolateRainPool : MonoBehaviour
 
     private void OnGetObject(ChocolateRainDrop drop)
     {
+        drop.OnGet();
         drop.gameObject.SetActive(true);
     }
 
     private void OnReleaseObject(ChocolateRainDrop drop)
     {
+        drop.OnRelease();
         drop.gameObject.SetActive(false);
     }
 

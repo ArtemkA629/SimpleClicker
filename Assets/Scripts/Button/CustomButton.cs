@@ -9,7 +9,7 @@ public class CustomButton : MonoBehaviour
 
     private Button _button;
 
-    private void Awake()
+    protected void Awake()
     {
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnClick);
@@ -21,7 +21,6 @@ public class CustomButton : MonoBehaviour
     }
 }
 
-[RequireComponent(typeof(Button))]
 public class CustomButton<T> : CustomButton
 {
     public new Action<T> Clicked;

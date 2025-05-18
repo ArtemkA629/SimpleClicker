@@ -12,13 +12,8 @@ public class ClickerPresenter
         _model.AddClick();
     }
 
-    public void OnBuyUpgrade(int multiplyRatio, int price, BuyUpgradeButton clickedButton)
+    public void OnBuyUpgrade(int multiplyRatio, BuyUpgradeButton clickedButton)
     {
-        _model.ApplyUpgrade(multiplyRatio, price, clickedButton);
-    }
-
-    public void OnLoad(SaveData saveData)
-    {
-        _model.LoadData(saveData);
+        _model.ApplyUpgrade(multiplyRatio, clickedButton);
     }
 }

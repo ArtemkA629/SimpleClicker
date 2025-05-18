@@ -8,20 +8,13 @@ public class Clicker : MonoBehaviour
     private ClickerPresenter _presenter;
     private ClickerModel _model;
 
-    public void Init()
+    public ClickerModel Model => _model;
+
+    public void Init(SaveData saveData)
     {
         _model = new ClickerModel(_view);
         _presenter = new(_model);
         _view.Init(_presenter);
-    }
-
-    public void OnLoad(SaveData saveData)
-    {
-        _presenter.OnLoad(saveData);
-    }
-
-    public SaveData GetSaveData()
-    {
-        return _model.GetSaveData();
+        _model.LoadData(saveData);
     }
 }

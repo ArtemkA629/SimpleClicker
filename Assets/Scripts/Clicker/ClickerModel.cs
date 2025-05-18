@@ -9,6 +9,14 @@ public class ClickerModel
     private int _level;
     private int _perClickStat;
 
+    public int ClicksCount => _clicksCount;
+    public int CurrentNextLevelClicksCount => _currentNextLevelClicksCount;
+    public int Level => _level;
+    public int PerClickStat => _perClickStat;
+
+    public event Action DataChanged;
+    public event Action<int> LevelChanged;
+
     public ClickerModel(ClickerView view)
     {
         _view = view;
@@ -23,23 +31,20 @@ public class ClickerModel
             if (_clicksCount - _currentNextLevelClicksCount < 0)
                 throw new Exception("Invalid clicksCount");
 
+            LevelChanged?.Invoke(_currentNextLevelClicksCount);
             _clicksCount -= _currentNextLevelClicksCount;
             _currentNextLevelClicksCount *= 2;
         }
 
+        DataChanged?.Invoke();
         _view.UpdateProgressAfterClick(_level, _clicksCount, _currentNextLevelClicksCount);
     }
 
-    public void ApplyUpgrade(int multiplyRatio, int price, BuyUpgradeButton clickedButton)
+    public void ApplyUpgrade(int multiplyRatio, BuyUpgradeButton clickedButton)
     {
-        if (_clicksCount < price)
-            return;
-
-        if (_clicksCount - price < 0)
-            throw new Exception("Invalid clicksCount");
-
-        _clicksCount -= price;
         _perClickStat *= multiplyRatio;
+
+        DataChanged?.Invoke();
         _view.UpdateProgressAfterUpgrade(_clicksCount, _currentNextLevelClicksCount, _perClickStat);
         clickedButton.Disable();
     }
@@ -51,10 +56,5 @@ public class ClickerModel
         _currentNextLevelClicksCount = saveData.CurrentNextLevelClicksCount;
         _perClickStat = saveData.PerClickStat;
         _view.UpdateAll(_clicksCount, _level, _currentNextLevelClicksCount, _perClickStat);
-    }
-
-    public SaveData GetSaveData()
-    {
-        return new SaveData(_clicksCount, _level, _currentNextLevelClicksCount, _perClickStat);
     }
 }

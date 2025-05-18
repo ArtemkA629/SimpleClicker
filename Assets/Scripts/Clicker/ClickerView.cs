@@ -26,9 +26,9 @@ public class ClickerView : MonoBehaviour
         _presenter.OnClick();
     }
 
-    public void OnBuyUpgrade(int multiplyRatio, int price, BuyUpgradeButton clickedButton)
+    public void OnBuyUpgrade(int multiplyRatio, BuyUpgradeButton clickedButton)
     {
-        _presenter.OnBuyUpgrade(multiplyRatio, price, clickedButton);
+        _presenter.OnBuyUpgrade(multiplyRatio, clickedButton);
     }
 
     public void UpdateProgressAfterClick(int level, int clicksCount, int currentNextLevelClicksCount)
