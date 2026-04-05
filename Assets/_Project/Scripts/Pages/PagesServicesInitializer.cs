@@ -8,8 +8,8 @@ public class PagesServicesInitializer
     private readonly PagesView _pagesView;
     private readonly PagesSwiper _pagesSwiper;
     
-    public PagesServicesInitializer(PagesFitter pagesFitter, PagesButtonsFactory pagesButtonsFactory, PagesPresenter pagesPresenter, 
-        PagesView pagesView, PagesSwiper pagesSwiper)
+    public PagesServicesInitializer(PagesFitter pagesFitter, PagesButtonsFactory pagesButtonsFactory, 
+        PagesPresenter pagesPresenter, PagesView pagesView, PagesSwiper pagesSwiper)
     {
         _pagesFitter = pagesFitter;
         _pagesButtonsFactory = pagesButtonsFactory;

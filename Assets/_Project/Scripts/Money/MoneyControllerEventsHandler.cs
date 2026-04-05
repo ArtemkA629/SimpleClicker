@@ -5,11 +5,13 @@ using Zenject;
 public class MoneyControllerEventsHandler : IDisposable
 {
     private readonly MoneyController _moneyController;
+    private readonly BuildingsView _buildingsView;
     private readonly ISaveSystem _saveSystem;
     
-    public MoneyControllerEventsHandler(MoneyController moneyController, ISaveSystem saveSystem)
+    public MoneyControllerEventsHandler(MoneyController moneyController, BuildingsView buildingsView, ISaveSystem saveSystem)
     {
         _moneyController = moneyController;
+        _buildingsView = buildingsView;
         _saveSystem = saveSystem;
     }
 
@@ -25,6 +27,7 @@ public class MoneyControllerEventsHandler : IDisposable
 
     private void OnMoneyAmountChanged()
     {
+        _buildingsView.UpdateBuildingsPrices(_moneyController.Amount);
         _saveSystem.Save(SavingConstants.MoneyId, _moneyController.Amount);
     }
 }

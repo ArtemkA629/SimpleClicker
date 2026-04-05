@@ -27,4 +27,14 @@ public class MoneyController : IInitializable
         _view.DisplayMoney(Amount);
         MoneyAmountChanged?.Invoke();
     }
+
+    public bool TrySubtractMoney(int amount)
+    {
+        if (_model.TrySubtractMoney(amount) == false)
+            return false;
+        
+        _view.DisplayMoney(Amount);
+        MoneyAmountChanged?.Invoke();
+        return true;
+    }
 }

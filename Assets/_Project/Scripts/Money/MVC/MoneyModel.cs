@@ -15,10 +15,27 @@ public class MoneyModel
     {
         if (addingAmount < 0f)
         {
-            Debug.LogError("Can't add more than 0 money");
+            Debug.LogError("Can't add less than 0 money");
             return;
         }
         
         _amount += addingAmount;
+    }
+
+    public bool TrySubtractMoney(int subtractingAmount)
+    {
+        if (subtractingAmount < 0)
+        {
+            Debug.Log("Can't subtract less than 0 money");
+            return false;
+        }
+
+        if (_amount - subtractingAmount < 0)
+        {
+            return false;
+        }
+        
+        _amount -= subtractingAmount;
+        return true;
     }
 }
