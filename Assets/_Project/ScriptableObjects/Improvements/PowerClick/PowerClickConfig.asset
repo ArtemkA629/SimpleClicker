@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373efba946d44e76824d35d0e11522f8, type: 3}
+  m_Name: PowerClickConfig
+  m_EditorClassIdentifier: 
+  <Type>k__BackingField: 0
+  <Icon>k__BackingField: {fileID: 21300000, guid: cf9f1a65da6674a409359527a9b33de1, type: 3}
+  <Name>k__BackingField: Power click
+  <DescriptionTemplate>k__BackingField: Makes your click {PowerMultiplier} times
+    more powerful.

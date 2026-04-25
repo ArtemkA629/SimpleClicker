@@ -8,15 +8,15 @@ public class ClickableEventsHandler : IDisposable
     private readonly List<Clickable> _clickables;
     private readonly CoinPopupService _coinPopupService;
     private readonly MoneyController _moneyController;
+    private readonly PowerClickInfoHandler _powerClickInfoHandler;
 
-    public ClickableEventsHandler(
-        List<Clickable> clickables, 
-        CoinPopupService coinPopupService,
-        MoneyController moneyController)
+    public ClickableEventsHandler(List<Clickable> clickables, CoinPopupService coinPopupService,
+        MoneyController moneyController, PowerClickInfoHandler powerClickInfoHandler)
     {
         _clickables = clickables;
         _coinPopupService = coinPopupService;
         _moneyController = moneyController;
+        _powerClickInfoHandler = powerClickInfoHandler;
     }
 
     public void Initialize()
@@ -37,7 +37,8 @@ public class ClickableEventsHandler : IDisposable
     
     private void OnClickableClicked(PointerEventData eventData)
     {
-        _moneyController.AddMoney(1);
+        int clickMultiplier = _powerClickInfoHandler.GetPowerClickMultiplier();
+        _moneyController.AddMoney(clickMultiplier);
         _coinPopupService.AnimateAdding(eventData.position);
     }
 }

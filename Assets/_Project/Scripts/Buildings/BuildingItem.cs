@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class BuildingItem : MonoBehaviour
+public class BuildingItem : MonoBehaviour, ICustomButton
 {
     [SerializeField] private Button _buttonComponent;
     [SerializeField] private Image _icon;
@@ -13,6 +13,16 @@ public class BuildingItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _countText;
 
     public string Name { get; private set; }
+    
+    public void AddListener(UnityAction action)
+    {
+        _buttonComponent.onClick.AddListener(action);
+    }
+    
+    public void RemoveListener(UnityAction action)
+    {
+        _buttonComponent.onClick.RemoveListener(action);
+    }
     
     public void SetInfo(Sprite icon, string headerName, int price, bool canBuy, int count)
     {
@@ -44,22 +54,12 @@ public class BuildingItem : MonoBehaviour
         }
         
         _priceText.text = price.ToString();
-        UpdatePrice(canBuy);
+        UpdateCanBuyState(canBuy);
     }
-
-    public void UpdatePrice(bool canBuy)
+    
+    private void UpdateCanBuyState(bool canBuy)
     {
         _priceText.color = canBuy ? Color.green : Color.red;
         _lock.gameObject.SetActive(canBuy == false);
-    }
-    
-    public void AddListener(UnityAction action)
-    {
-        _buttonComponent.onClick.AddListener(action);
-    }
-    
-    public void RemoveListener(UnityAction action)
-    {
-        _buttonComponent.onClick.RemoveListener(action);
     }
 }

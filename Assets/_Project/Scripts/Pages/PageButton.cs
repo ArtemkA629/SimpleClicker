@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using Zenject;
 
 [RequireComponent(typeof(Button))]
-public class PageButton : MonoBehaviour
+public class PageButton : MonoBehaviour, ICustomButton
 {
     [NonSerialized] public int Number;
     
