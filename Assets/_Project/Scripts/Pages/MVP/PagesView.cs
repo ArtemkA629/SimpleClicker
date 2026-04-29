@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
-using Zenject;
 
 public class PagesView : IDisposable
 {
@@ -10,8 +9,7 @@ public class PagesView : IDisposable
     
     private Dictionary<PageButton, UnityAction> _pageButtonHandlers = new();
     
-    [Inject]
-    private void Construct(PagesSwiper swiper)
+    public PagesView(PagesSwiper swiper)
     {
         _swiper = swiper;
     }

@@ -26,8 +26,12 @@ public class ImprovementsView
         int improvementPrice = _presenter.GetImprovementPrice(improvementName, level + 1);
         bool canBuyImprovement = _presenter.CanBuyImprovement(improvementPrice);
         bool isImprovementLevelMax = _presenter.IsLevelMax(improvementName, level);
+        int descriptionLevel = isImprovementLevelMax ? level : level + 1;
+        string description = _presenter.GetDescription(improvementName, descriptionLevel);
+        
         item.UpdateLevel(level);
         item.UpdatePrice(improvementPrice);
+        item.UpdateDescription(description);
 
         if (isImprovementLevelMax)
         {
@@ -35,6 +39,22 @@ public class ImprovementsView
         }
         else
         {
+            item.UpdateCanBuyState(canBuyImprovement);
+        }
+    }
+
+    public void UpdateAllItemsView(ImprovementsDatabase database)
+    {
+        foreach (var item in _improvementItemsDictionary.Keys)
+        {
+            int level = database.GetData(item.Name).Level;
+            bool isImprovementLevelMax = _presenter.IsLevelMax(item.Name, level);
+            
+            if (isImprovementLevelMax)
+                continue;
+            
+            int price = _presenter.GetImprovementPrice(item.Name, level + 1);
+            bool canBuyImprovement = _presenter.CanBuyImprovement(price);
             item.UpdateCanBuyState(canBuyImprovement);
         }
     }

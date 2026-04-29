@@ -13,6 +13,8 @@ public class ImprovementsServicesInstaller : MonoInstaller
         BindView();
         BindModel();
         BindPowerClickInfoHandler();
+        BindLastLoginTimeSaver();
+        BindOfflineIncomeService();
         BindServicesInitializer();
     }
 
@@ -50,6 +52,18 @@ public class ImprovementsServicesInstaller : MonoInstaller
     private void BindPowerClickInfoHandler()
     {
         Container.Bind<PowerClickInfoHandler>()
+            .AsSingle();
+    }
+
+    private void BindLastLoginTimeSaver()
+    {
+        Container.BindInterfacesAndSelfTo<LastLoginTimeSaver>()
+            .AsSingle();
+    }
+
+    private void BindOfflineIncomeService()
+    {
+        Container.Bind<OfflineIncomeService>()
             .AsSingle();
     }
     

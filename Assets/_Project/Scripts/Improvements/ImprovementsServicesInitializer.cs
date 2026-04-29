@@ -9,10 +9,12 @@ public class ImprovementsServicesInitializer
     private readonly ImprovementsConfig _config;
     private readonly ImprovementsDatabase _database;
     private readonly ImprovementsPresenterEventsHandler _presenterEventsHandler;
+    private readonly OfflineIncomeService _offlineIncomeService;
     private readonly MoneyModel _moneyModel;
     
     public ImprovementsServicesInitializer(ImprovementItemsFactory factory, ImprovementsView view, 
-        ImprovementsPresenter presenter, ImprovementsModel model, ImprovementsPresenterEventsHandler presenterEventsHandler, 
+        ImprovementsPresenter presenter, ImprovementsModel model, 
+        ImprovementsPresenterEventsHandler presenterEventsHandler, OfflineIncomeService offlineIncomeService,
         MoneyModel moneyModel, IConfigProvider configProvider)
     {
         _factory = factory;
@@ -21,6 +23,7 @@ public class ImprovementsServicesInitializer
         _config = configProvider.Get<ImprovementsConfig>();
         _database = model.Database;
         _presenterEventsHandler = presenterEventsHandler;
+        _offlineIncomeService = offlineIncomeService;
         _moneyModel = moneyModel;
     }
     
@@ -29,6 +32,7 @@ public class ImprovementsServicesInitializer
         List<ImprovementItem> improvementItems = CreateItems();
         _view.Init(_presenter, improvementItems);
         _presenterEventsHandler.Initialize();
+        _offlineIncomeService.AddOfflineIncome();
     }
 
     private List<ImprovementItem> CreateItems()

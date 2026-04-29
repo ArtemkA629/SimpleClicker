@@ -57,4 +57,10 @@ public class ImprovementsPresenter
         IImprovementLevelInfoConfig levelInfoConfig = (IImprovementLevelInfoConfig)info.LevelInfoConfig;
         return levelInfoConfig.LevelsInfo.Length == improvementLevel;
     }
+
+    public string GetDescription(string improvementName, int improvementLevel)
+    {
+        ImprovementConfigInfo info = _config.GetInfoByName(improvementName);
+        return info.GetDescription(improvementLevel);
+    }
 }

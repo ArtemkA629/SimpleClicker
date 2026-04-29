@@ -11,5 +11,6 @@ public class ImprovementTypeConfig : ScriptableObject
 
 public enum ImprovementType
 {
-    PowerClick
+    PowerClick,
+    OfflineIncome
 }

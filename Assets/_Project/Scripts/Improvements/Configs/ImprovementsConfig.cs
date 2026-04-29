@@ -19,4 +19,11 @@ public class ImprovementConfigInfo
 {
     [field: SerializeField] public ImprovementTypeConfig TypeConfig { get; private set; }
     [field: SerializeField] public ScriptableObject LevelInfoConfig { get; private set; }
+
+    public string GetDescription(int level)
+    {
+        IImprovementDescriptionCreator descriptionCreator = TypeConfig.Type.GetDescriptionCreator();
+        return descriptionCreator.GetDescription(TypeConfig.DescriptionTemplate, 
+            ((IImprovementLevelInfoConfig)LevelInfoConfig).GetLevelInfo(level));
+    }
 }

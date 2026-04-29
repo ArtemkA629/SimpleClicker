@@ -3,8 +3,7 @@ using Zenject;
 
 public class PagesServicesInstaller : MonoInstaller
 {
-    [SerializeField] private Transform _pagesButtonsParent;
-    [SerializeField] private PagesView _view;
+    [SerializeField] private RectTransform _pagesButtonsParent;
     
     public override void InstallBindings()
     {

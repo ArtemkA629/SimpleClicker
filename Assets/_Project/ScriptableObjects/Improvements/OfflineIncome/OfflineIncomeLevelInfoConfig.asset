@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596c4907c1a348849745c8466a1fde33, type: 3}
+  m_Name: OfflineIncomeLevelInfoConfig
+  m_EditorClassIdentifier: 
+  _levelsInfo:
+  - <Level>k__BackingField: 1
+    <Price>k__BackingField: 250
+    <TotalIncomePercentPerDay>k__BackingField: 2
+  - <Level>k__BackingField: 2
+    <Price>k__BackingField: 8000
+    <TotalIncomePercentPerDay>k__BackingField: 5
+  - <Level>k__BackingField: 3
+    <Price>k__BackingField: 20000
+    <TotalIncomePercentPerDay>k__BackingField: 10

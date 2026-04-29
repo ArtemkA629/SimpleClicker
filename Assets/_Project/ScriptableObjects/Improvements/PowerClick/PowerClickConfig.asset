@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowerClickConfig
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 0
-  <Icon>k__BackingField: {fileID: 21300000, guid: cf9f1a65da6674a409359527a9b33de1, type: 3}
+  <Icon>k__BackingField: {fileID: 21300000, guid: b36fb541e13d3934181febee7c895da2, type: 3}
   <Name>k__BackingField: Power click
   <DescriptionTemplate>k__BackingField: Makes your click {PowerMultiplier} times
     more powerful.

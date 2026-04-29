@@ -8,6 +8,8 @@ public static class ImprovementTypeExtensions
         {
             case ImprovementType.PowerClick:
                 return new PowerClickDescriptionCreator();
+            case ImprovementType.OfflineIncome:
+                return new OfflineIncomeDescriptionCreator();
             default:
                 Debug.LogError("Unknown improvement type");
                 return null;

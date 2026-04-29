@@ -15,4 +15,6 @@ MonoBehaviour:
   <ImprovementsInfo>k__BackingField:
   - <TypeConfig>k__BackingField: {fileID: 11400000, guid: f2b1272ca6852b348aba2f2eae48bb10, type: 2}
     <LevelInfoConfig>k__BackingField: {fileID: 11400000, guid: ae5aaa1f280096c4f83e9b2d3442e85d, type: 2}
+  - <TypeConfig>k__BackingField: {fileID: 11400000, guid: b36337699d535b5458ab382a34afd0b8, type: 2}
+    <LevelInfoConfig>k__BackingField: {fileID: 11400000, guid: 5262a138addb2ea4195cf185dc179253, type: 2}
   <ItemPrefab>k__BackingField: {fileID: 5151245742072804678, guid: 7774e4a7c7190e7458ce9bfd504d4e4c, type: 3}

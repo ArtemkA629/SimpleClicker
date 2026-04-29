@@ -15,9 +15,10 @@ public class PageButton : MonoBehaviour, ICustomButton
     [SerializeField] private Button _buttonComponent;
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _description;
+    [SerializeField] private LayoutElement _layoutElement;
 
     private PagesViewConfig _pagesViewConfig;
-    private Vector3 _initialScale;
+    private Vector2 _initialSizeDelta;
     
     [Inject]
     private void Construct(IConfigProvider configProvider)
@@ -27,7 +28,7 @@ public class PageButton : MonoBehaviour, ICustomButton
 
     public void Initialize()
     {
-        _initialScale = _rectTransformComponent.localScale;
+        _initialSizeDelta = _rectTransformComponent.sizeDelta;
     }
     
     public void SetInfo(int number)
@@ -51,7 +52,11 @@ public class PageButton : MonoBehaviour, ICustomButton
     {
         _rectTransformComponent.DOKill(true);
         float scaleRatio = isSelected ? _pagesViewConfig.PageButtonScaleRatio : 1f;
-        _rectTransformComponent.DOScale(_initialScale * scaleRatio, _pagesViewConfig.PageScaleChangingDuration);
+        
+        _rectTransformComponent.DOSizeDelta(
+            _initialSizeDelta * scaleRatio, 
+            _pagesViewConfig.PageScaleChangingDuration);
+        
         _description.gameObject.SetActive(isSelected);
     }
 
