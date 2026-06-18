@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Numerics;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObject/Improvement/PowerClickLevelInfoConfig", fileName = "PowerClickLevelInfoConfig")]
@@ -9,7 +10,7 @@ public class PowerClickLevelInfoConfig : ScriptableObject, IImprovementLevelInfo
 
     public ImprovementLevelInfo[] LevelsInfo => _levelsInfo;
     
-    public int GetPriceByLevel(int level)
+    public BigInteger GetPriceByLevel(int level)
     {
         return _levelsInfo.FirstOrDefault(x => x.Level == level).Price;
     }

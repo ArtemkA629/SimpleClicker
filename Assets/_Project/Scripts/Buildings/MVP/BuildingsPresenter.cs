@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Numerics;
 using UnityEngine;
 
 public class BuildingsPresenter
@@ -21,7 +22,7 @@ public class BuildingsPresenter
     
     public void TryBuyBuilding(string buildingName)
     {
-        int totalPrice = GetBuildingTotalPrice(buildingName);
+        BigInteger totalPrice = GetBuildingTotalPrice(buildingName);
         
         if (_moneyController.Amount < totalPrice)
             return;
@@ -41,11 +42,11 @@ public class BuildingsPresenter
         return _buildingsConfig.BuildingsInfo.FirstOrDefault(i => i.Name == buildingName);
     }
     
-    private int GetBuildingTotalPrice(string buildingName)
+    private BigInteger GetBuildingTotalPrice(string buildingName)
     {
         BuildingInfo buildingInfo = _buildingsConfig.GetBuildingInfo(buildingName);
         BuildingData buildingData = _model.GetBuildingData(buildingName);
         int currentBuildingCount = buildingData == null ? 0 : buildingData.Count;
-        return (int)(buildingInfo.StartPrice * Mathf.Pow(_buildingsConfig.PriceMultiplier, currentBuildingCount));
+        return buildingInfo.StartPrice.Multiply(Mathf.Pow(_buildingsConfig.PriceMultiplier, currentBuildingCount));
     }
 }

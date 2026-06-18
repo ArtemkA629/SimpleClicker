@@ -1,4 +1,6 @@
-﻿public class PassiveIncomeModel
+﻿using System.Numerics;
+
+public class PassiveIncomeModel
 {
     private readonly BuildingsConfig _buildingsConfig;
     private readonly BuildingsDatabase _buildingsDatabase;
@@ -9,15 +11,15 @@
         _buildingsDatabase = saveSystem.Load(SavingConstants.BoughtBuildingsId, _buildingsConfig.GetDefaultDatabase());
     }
 
-    public int TotalIncome
+    public BigInteger TotalIncome
     {
         get
         {
-            int totalIncome = 0;
+            BigInteger totalIncome = 0;
             
             foreach (BuildingData data in _buildingsDatabase.BuildingsData)
             {
-                totalIncome += _buildingsConfig.GetBuildingInfo(data.Name).IncomePerSecond * data.Count;
+                totalIncome += _buildingsConfig.GetBuildingInfo(data.Name).IncomePerSecond.Multiply(data.Count);
             }
             
             return totalIncome;

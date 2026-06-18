@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using Zenject;
 
 public class MoneyController : IInitializable
@@ -14,21 +15,21 @@ public class MoneyController : IInitializable
         _view = view;
     }
     
-    public int Amount => _model.Amount;
+    public BigInteger Amount => _model.Amount;
 
     public void Initialize()
     {
         _view.DisplayMoney(Amount);
     }
     
-    public void AddMoney(int amount)
+    public void AddMoney(BigInteger amount)
     {
         _model.AddMoney(amount);
         _view.DisplayMoney(Amount);
         MoneyAmountChanged?.Invoke();
     }
 
-    public bool TrySubtractMoney(int amount)
+    public bool TrySubtractMoney(BigInteger amount)
     {
         if (_model.TrySubtractMoney(amount) == false)
             return false;

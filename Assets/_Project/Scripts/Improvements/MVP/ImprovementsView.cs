@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using UnityEngine.Events;
 
 public class ImprovementsView
@@ -23,7 +24,7 @@ public class ImprovementsView
     public void DisplayNewImprovementLevel(string improvementName, int level)
     {
         ImprovementItem item = _improvementItemsDictionary.Keys.First(x => x.Name == improvementName);
-        int improvementPrice = _presenter.GetImprovementPrice(improvementName, level + 1);
+        BigInteger improvementPrice = _presenter.GetImprovementPrice(improvementName, level + 1);
         bool canBuyImprovement = _presenter.CanBuyImprovement(improvementPrice);
         bool isImprovementLevelMax = _presenter.IsLevelMax(improvementName, level);
         int descriptionLevel = isImprovementLevelMax ? level : level + 1;
@@ -53,7 +54,7 @@ public class ImprovementsView
             if (isImprovementLevelMax)
                 continue;
             
-            int price = _presenter.GetImprovementPrice(item.Name, level + 1);
+            BigInteger price = _presenter.GetImprovementPrice(item.Name, level + 1);
             bool canBuyImprovement = _presenter.CanBuyImprovement(price);
             item.UpdateCanBuyState(canBuyImprovement);
         }

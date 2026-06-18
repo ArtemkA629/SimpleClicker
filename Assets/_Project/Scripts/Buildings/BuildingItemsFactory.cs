@@ -1,3 +1,4 @@
+using System.Numerics;
 using UnityEngine;
 using Zenject;
 
@@ -9,7 +10,7 @@ public class BuildingItemsFactory
 
     private string _buildingName;
     private Sprite _buildingIcon;
-    private int _buildingPrice;
+    private BigInteger _buildingPrice;
     private bool _canBuyBuilding;
     private int _buildingCount;
     
@@ -20,7 +21,7 @@ public class BuildingItemsFactory
         _container = container;
     }
 
-    public void SetBuildingInfo(string name, Sprite icon, int price, bool canBuy, int count)
+    public void SetBuildingInfo(string name, Sprite icon, BigInteger price, bool canBuy, int count)
     {
         _buildingName = name;
         _buildingIcon = icon;

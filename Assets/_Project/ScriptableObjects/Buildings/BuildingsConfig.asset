@@ -13,17 +13,45 @@ MonoBehaviour:
   m_Name: BuildingsConfig
   m_EditorClassIdentifier: 
   <BuildingsInfo>k__BackingField:
+  - <Icon>k__BackingField: {fileID: 21300000, guid: 1bac440bc0c02ff458cddd8e7e88dc60, type: 3}
+    <Name>k__BackingField: Sugar Factory
+    _startPrice: 15
+    _incomePerSecond: 1
   - <Icon>k__BackingField: {fileID: 21300000, guid: ba82eda8fb0804842bb8da68911cc246, type: 3}
     <Name>k__BackingField: Milk Factory
-    <StartPrice>k__BackingField: 50
-    <IncomePerSecond>k__BackingField: 1
+    _startPrice: 100
+    _incomePerSecond: 4
   - <Icon>k__BackingField: {fileID: 21300000, guid: a8a459baa5c32534688ff516c57e6f69, type: 3}
     <Name>k__BackingField: Chocolate Factory
-    <StartPrice>k__BackingField: 100
-    <IncomePerSecond>k__BackingField: 2
+    _startPrice: 1100
+    _incomePerSecond: 32
   - <Icon>k__BackingField: {fileID: 21300000, guid: 25ec23d08f3a0ec48bcfde9741bda16b, type: 3}
     <Name>k__BackingField: Strawberry Factory
-    <StartPrice>k__BackingField: 200
-    <IncomePerSecond>k__BackingField: 5
+    _startPrice: 12000
+    _incomePerSecond: 260
+  - <Icon>k__BackingField: {fileID: 21300000, guid: e7f8c10c8b8b0b241b7d7c9d1409d34d, type: 3}
+    <Name>k__BackingField: Caramel Factory
+    _startPrice: 130000
+    _incomePerSecond: 1400
+  - <Icon>k__BackingField: {fileID: 21300000, guid: 6113ddc7473835a4bb15ea695b82b128, type: 3}
+    <Name>k__BackingField: Biscuit Factory
+    _startPrice: 1400000
+    _incomePerSecond: 16000
+  - <Icon>k__BackingField: {fileID: 21300000, guid: b0ed317fdd0ea5c478e3c97adc62c2c8, type: 3}
+    <Name>k__BackingField: Marmelade Factory
+    _startPrice: 20000000
+    _incomePerSecond: 220000
+  - <Icon>k__BackingField: {fileID: 21300000, guid: 8c6b895fe139fe749ba9e288ffe8d1bd, type: 3}
+    <Name>k__BackingField: Icecream Factory
+    _startPrice: 330000000
+    _incomePerSecond: 3200000
+  - <Icon>k__BackingField: {fileID: 21300000, guid: f73a7599c01ee8c439ed61a9c83b8ec8, type: 3}
+    <Name>k__BackingField: Syrup Factory
+    _startPrice: 5200000000
+    _incomePerSecond: 45000000
+  - <Icon>k__BackingField: {fileID: 21300000, guid: e4f0eeb272d03be4d802c91532a65329, type: 3}
+    <Name>k__BackingField: CyberConfectionery Factory
+    _startPrice: 90000000000
+    _incomePerSecond: 700000000
   <BuildingItemPrefab>k__BackingField: {fileID: 8699226320249777016, guid: 5f87c1b92418b0b4f8b3a41f54f9752c, type: 3}
   <PriceMultiplier>k__BackingField: 1.15

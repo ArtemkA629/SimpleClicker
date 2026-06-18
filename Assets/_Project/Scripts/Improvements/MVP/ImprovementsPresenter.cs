@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using UnityEngine;
 
 public class ImprovementsPresenter
@@ -28,7 +29,7 @@ public class ImprovementsPresenter
             return;
         }
         
-        int price = levelInfoConfig.GetPriceByLevel(data.Level + 1);
+        BigInteger price = levelInfoConfig.GetPriceByLevel(data.Level + 1);
         
         if (_moneyController.Amount < price)
             return;
@@ -38,7 +39,7 @@ public class ImprovementsPresenter
         ImprovementBought?.Invoke();
     }
     
-    public int GetImprovementPrice(string improvementName, int improvementLevel)
+    public BigInteger GetImprovementPrice(string improvementName, int improvementLevel)
     {
         ImprovementConfigInfo info = _config.GetInfoByName(improvementName);
         IImprovementLevelInfoConfig levelInfoConfig = (IImprovementLevelInfoConfig)info.LevelInfoConfig;
@@ -46,7 +47,7 @@ public class ImprovementsPresenter
         return levelInfoConfig.GetPriceByLevel(improvementLevel);
     }
 
-    public bool CanBuyImprovement(int improvementPrice)
+    public bool CanBuyImprovement(BigInteger improvementPrice)
     {
         return _moneyController.Amount >= improvementPrice;
     }

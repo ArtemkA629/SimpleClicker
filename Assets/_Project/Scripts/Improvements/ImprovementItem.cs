@@ -1,3 +1,4 @@
+using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,7 +16,7 @@ public class ImprovementItem : MonoBehaviour, ICustomButton
     
     public string Name { get; private set; }
     
-    public void SetInfo(Sprite icon, string improvementName, string description, int level, int price)
+    public void SetInfo(Sprite icon, string improvementName, string description, int level, BigInteger price)
     {
         Name = improvementName;
         _icon.sprite = icon;
@@ -35,7 +36,7 @@ public class ImprovementItem : MonoBehaviour, ICustomButton
         _levelText.text = level == 0 ? "" : $"Lvl {level}";
     }
 
-    public void UpdatePrice(int price)
+    public void UpdatePrice(BigInteger price)
     {
         _priceText.text = price.ToString();
     }

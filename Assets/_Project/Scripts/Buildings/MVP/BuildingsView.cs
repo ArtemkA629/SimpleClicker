@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -53,7 +54,7 @@ public class BuildingsView : IDisposable
         Debug.LogWarning("Building with name " + data.Name + " not found");
     }
 
-    public void UpdateBuildingsPrices(int moneyAmount)
+    public void UpdateBuildingsPrices(BigInteger moneyAmount)
     {
         foreach (var (buildingItem, action) in _buildingItemsHandlers)
         {
@@ -66,11 +67,11 @@ public class BuildingsView : IDisposable
         _presenter.TryBuyBuilding(buildingName);
     }
 
-    private void UpdatePrice(BuildingItem buildingItem, int moneyAmount)
+    private void UpdatePrice(BuildingItem buildingItem, BigInteger moneyAmount)
     {
         BuildingInfo info = _presenter.GetBuildingInfo(buildingItem.Name);
         BuildingData data = _presenter.GetBuildingData(buildingItem.Name);
-        int totalPrice = (int)(info.StartPrice * Mathf.Pow(_presenter.BuildingsPriceMultiplier, data.Count));
+        BigInteger totalPrice = info.StartPrice.Multiply(Mathf.Pow(_presenter.BuildingsPriceMultiplier, data.Count));
         buildingItem.UpdatePrice(totalPrice, totalPrice <= moneyAmount);
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Numerics;
 using UnityEngine;
 
 public interface IImprovementLevelInfoConfig
 {
     public ImprovementLevelInfo[] LevelsInfo { get; }
 
-    public int GetPriceByLevel(int level);
+    public BigInteger GetPriceByLevel(int level);
     public ImprovementLevelInfo GetLevelInfo(int level);
 }
 
@@ -13,5 +14,8 @@ public interface IImprovementLevelInfoConfig
 public class ImprovementLevelInfo
 {
     [field: SerializeField] public int Level { get; private set; }
-    [field: SerializeField] public int Price { get; private set; }
+
+    [SerializeField] private string _price;
+    
+    public BigInteger Price => BigIntegerStatic.Parse(_price);
 }

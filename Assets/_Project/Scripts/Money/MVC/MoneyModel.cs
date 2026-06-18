@@ -1,19 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Numerics;
+using UnityEngine;
 
 public class MoneyModel
 {
-    private int _amount;
+    private BigInteger _amount;
     
     public MoneyModel(ISaveSystem saveSystem)
     {
-        _amount = saveSystem.Load<int>(SavingConstants.MoneyId);
+        _amount = BigIntegerStatic.Parse(saveSystem.Load<string>(SavingConstants.MoneyId));
     }
 
-    public int Amount => _amount;
+    public BigInteger Amount => _amount;
     
-    public void AddMoney(int addingAmount)
+    public void AddMoney(BigInteger addingAmount)
     {
-        if (addingAmount < 0f)
+        if (addingAmount < 0)
         {
             Debug.LogError("Can't add less than 0 money");
             return;
@@ -22,7 +23,7 @@ public class MoneyModel
         _amount += addingAmount;
     }
 
-    public bool TrySubtractMoney(int subtractingAmount)
+    public bool TrySubtractMoney(BigInteger subtractingAmount)
     {
         if (subtractingAmount < 0)
         {

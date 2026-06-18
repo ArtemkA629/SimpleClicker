@@ -1,11 +1,12 @@
-﻿using TMPro;
+﻿using System.Numerics;
+using TMPro;
 using UnityEngine;
 
 public class MoneyView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _moneyText;
     
-    public void DisplayMoney(int amount)
+    public void DisplayMoney(BigInteger amount)
     {
         _moneyText.text = amount.ToString();
     }

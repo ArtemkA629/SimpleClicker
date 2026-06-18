@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObject/BuildingsConfig", fileName = "BuildingsConfig")]
@@ -35,6 +36,10 @@ public class BuildingInfo
 {
     [field: SerializeField] public Sprite Icon { get; private set; }
     [field: SerializeField] public string Name { get; private set; }
-    [field: SerializeField] public int StartPrice { get; private set; }
-    [field: SerializeField] public int IncomePerSecond { get; private set; }
+
+    [SerializeField] public string _startPrice;
+    [SerializeField] public string _incomePerSecond;
+    
+    public BigInteger StartPrice => BigIntegerStatic.Parse(_startPrice);
+    public BigInteger IncomePerSecond => BigIntegerStatic.Parse(_incomePerSecond);
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using UnityEngine;
 
 public class BuildingsServicesInitializer
@@ -41,9 +42,10 @@ public class BuildingsServicesInitializer
         
         foreach (var buildingInfo in _config.BuildingsInfo)
         {
-            BuildingData buildingData = _buildingsDatabase.BuildingsData.FirstOrDefault(d => d.Name == buildingInfo.Name);
+            BuildingData buildingData = _buildingsDatabase.BuildingsData
+                .FirstOrDefault(d => d.Name == buildingInfo.Name);
             int buildingCount = buildingData == null ? 0 : buildingData.Count;
-            int buildingPrice = (int)(buildingInfo.StartPrice * Mathf.Pow(_config.PriceMultiplier, buildingCount));
+            BigInteger buildingPrice = buildingInfo.StartPrice.Multiply(Mathf.Pow(_config.PriceMultiplier, buildingCount));
             bool canBuy = buildingPrice <= _moneyCount;
             
             _factory.SetBuildingInfo(buildingInfo.Name, buildingInfo.Icon, buildingPrice, canBuy, buildingCount);

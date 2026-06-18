@@ -6,11 +6,6 @@ public class PagesFitter : MonoBehaviour
 {
     [SerializeField] private ScrollRect _scrollRect;
 
-    private void OnValidate()
-    {
-        SetupPages();
-    }
-    
     public void Initialize()
     {
         SetupPages();

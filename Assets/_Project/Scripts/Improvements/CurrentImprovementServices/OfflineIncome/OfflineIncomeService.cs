@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Numerics;
 
 public class OfflineIncomeService
 {
@@ -37,7 +38,7 @@ public class OfflineIncomeService
         var levelInfoConfig = (IImprovementLevelInfoConfig)_offlineIncomeConfigInfo.LevelInfoConfig;
         var levelInfo = (OfflineIncomeLevelInfo)levelInfoConfig.GetLevelInfo(currentImprovementLevel);
         int offlineIncomePercent = levelInfo.TotalIncomePercentPerDay;
-        int income = (int)(daysPast * _passiveIncomeModel.TotalIncome * offlineIncomePercent / 100f);
+        BigInteger income = _passiveIncomeModel.TotalIncome.Multiply(daysPast * offlineIncomePercent / 100f);
         _moneyController.AddMoney(income);
     }
 }

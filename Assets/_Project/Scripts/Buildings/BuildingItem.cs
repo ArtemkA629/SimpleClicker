@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Numerics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -24,7 +25,7 @@ public class BuildingItem : MonoBehaviour, ICustomButton
         _buttonComponent.onClick.RemoveListener(action);
     }
     
-    public void SetInfo(Sprite icon, string headerName, int price, bool canBuy, int count)
+    public void SetInfo(Sprite icon, string headerName, BigInteger price, bool canBuy, int count)
     {
         _icon.sprite = icon;
         _nameText.text = headerName;
@@ -45,7 +46,7 @@ public class BuildingItem : MonoBehaviour, ICustomButton
         _countText.text = count == 0 ? "" : "x" + count;
     }
 
-    public void UpdatePrice(int price, bool canBuy)
+    public void UpdatePrice(BigInteger price, bool canBuy)
     {
         if (price < 0)
         {
