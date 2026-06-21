@@ -43,7 +43,7 @@ public class ImprovementsView
             item.UpdateCanBuyState(canBuyImprovement);
         }
     }
-
+    
     public void UpdateAllItemsView(ImprovementsDatabase database)
     {
         foreach (var item in _improvementItemsDictionary.Keys)

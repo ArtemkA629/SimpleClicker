@@ -17,4 +17,12 @@ public class ImprovementsDatabase
 
         return data;
     }
+
+    public void Clear()
+    {
+        foreach (var data in ImprovementsData)
+        {
+            data.ResetLevel();
+        }
+    }
 }

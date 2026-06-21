@@ -8,6 +8,6 @@ public class MoneyView : MonoBehaviour
     
     public void DisplayMoney(BigInteger amount)
     {
-        _moneyText.text = amount.ToString();
+        _moneyText.text = amount.ToShortValue();
     }
 }

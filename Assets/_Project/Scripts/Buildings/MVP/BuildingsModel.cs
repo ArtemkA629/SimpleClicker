@@ -36,4 +36,14 @@ public class BuildingsModel
         
         _view.UpdateBuildingCount(buildingData);
     }
+
+    public void RemoveAll()
+    {
+        _buildingsDatabase.Clear();
+
+        foreach (var data in _buildingsDatabase.BuildingsData)
+        {
+            _view.UpdateBuildingCount(data);
+        }
+    }
 }

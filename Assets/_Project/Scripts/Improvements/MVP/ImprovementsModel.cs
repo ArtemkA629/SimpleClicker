@@ -22,9 +22,20 @@ public class ImprovementsModel
     
     public void AddLevelToImprovement(string name)
     {
-        ImprovementSaveData data = _database.ImprovementsData.FirstOrDefault(x => x.Name == name) 
+        ImprovementSaveData data = _database.ImprovementsData
+                                       .FirstOrDefault(x => x.Name == name) 
                                    ?? new ImprovementSaveData(name);
         data.AddLevel();
         _view.DisplayNewImprovementLevel(name, data.Level);
+    }
+
+    public void RemoveAll()
+    {
+        _database.Clear();
+        
+        foreach (var data in _database.ImprovementsData)
+        {
+            _view.DisplayNewImprovementLevel(data.Name, data.Level);
+        }
     }
 }

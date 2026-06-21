@@ -43,7 +43,7 @@ public class BuildingItem : MonoBehaviour, ICustomButton
             return;
         }
         
-        _countText.text = count == 0 ? "" : "x" + count;
+        _countText.text = count == 0 ? "" : "x" + count.ToShortValue();
     }
 
     public void UpdatePrice(BigInteger price, bool canBuy)
@@ -54,7 +54,7 @@ public class BuildingItem : MonoBehaviour, ICustomButton
             return;
         }
         
-        _priceText.text = price.ToString();
+        _priceText.text = price.ToShortValue();
         UpdateCanBuyState(canBuy);
     }
     

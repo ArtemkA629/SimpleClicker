@@ -36,6 +36,11 @@ public class BuildingData
         
         _count += addingCount;
     }
+
+    public void ResetCount()
+    {
+        _count = 0;
+    }
     
     public string Name => _name;
     public int Count => _count;

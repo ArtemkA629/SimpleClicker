@@ -1,30 +1,38 @@
-﻿using Zenject;
+using Zenject;
 
 public class GameplayEntryPoint : IInitializable
 {
     private readonly ClickerServicesInitializer _clickerServicesInitializer;
     private readonly MoneyServicesInitializer _moneyServicesInitializer;
+    private readonly GemsServicesInitializer _gemsServicesInitializer;
     private readonly PagesServicesInitializer _pagesServicesInitializer;
     private readonly BuildingsServicesInitializer _buildingsServicesInitializer;
     private readonly ImprovementsServicesInitializer _improvementsServicesInitializer;
+    private readonly RebirthServicesInitializer _rebirthServicesInitializer;
     
     public GameplayEntryPoint(ClickerServicesInitializer clickerServicesInitializer, 
-        MoneyServicesInitializer moneyServicesInitializer, PagesServicesInitializer pagesServicesInitializer,
-        BuildingsServicesInitializer buildingsServicesInitializer, ImprovementsServicesInitializer improvementsServicesInitializer)
+        MoneyServicesInitializer moneyServicesInitializer, GemsServicesInitializer gemsServicesInitializer,
+        PagesServicesInitializer pagesServicesInitializer,
+        BuildingsServicesInitializer buildingsServicesInitializer, ImprovementsServicesInitializer improvementsServicesInitializer,
+        RebirthServicesInitializer rebirthServicesInitializer)
     {
         _clickerServicesInitializer = clickerServicesInitializer;
         _moneyServicesInitializer = moneyServicesInitializer;
+        _gemsServicesInitializer = gemsServicesInitializer;
         _pagesServicesInitializer = pagesServicesInitializer;
         _buildingsServicesInitializer = buildingsServicesInitializer;
         _improvementsServicesInitializer = improvementsServicesInitializer;
+        _rebirthServicesInitializer = rebirthServicesInitializer;
     }
 
     public void Initialize()
     {
         _clickerServicesInitializer.Initialize();
         _moneyServicesInitializer.Initialize();
+        _gemsServicesInitializer.Initialize();
         _pagesServicesInitializer.Initialize();
         _buildingsServicesInitializer.Initialize();
         _improvementsServicesInitializer.Initialize();
+        _rebirthServicesInitializer.Initialize();
     }
 }

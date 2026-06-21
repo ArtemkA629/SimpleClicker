@@ -38,7 +38,7 @@ public class ImprovementItem : MonoBehaviour, ICustomButton
 
     public void UpdatePrice(BigInteger price)
     {
-        _priceText.text = price.ToString();
+        _priceText.text = price.ToShortValue();
     }
 
     public void UpdateCanBuyState(bool canBuy)

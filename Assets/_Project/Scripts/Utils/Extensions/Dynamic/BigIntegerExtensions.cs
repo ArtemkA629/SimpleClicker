@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using UnityEngine;
 
 public static class BigIntegerExtensions
 {
@@ -11,22 +12,51 @@ public static class BigIntegerExtensions
         return (value * scaledMultiplier) / Scale;
     }
 
-    public static BigInteger Divide(this BigInteger value, double divisor)
+    public static float Divide(this BigInteger dividend, BigInteger divisor)
     {
-        if (divisor == 0) throw new DivideByZeroException();
-        BigInteger scaledDivisor = (long)Math.Round(divisor * Scale);
-        return (value * Scale) / scaledDivisor;
-    }
+        if (divisor == 0)
+        {
+            Debug.LogError("Attempted to divide by zero. Returning 0.");
+            return 0f;
+        }
+        
+        if (dividend == 0) 
+            return 0f;
 
-    public static BigInteger AddPercent(this BigInteger value, double percent)
-    {
-        BigInteger scaledMultiplier = (long)Math.Round((1.0 + (percent / 100.0)) * Scale);
-        return (value * scaledMultiplier) / Scale;
-    }
+        long dividendBits = dividend.GetByteCount() * 8;
+        long divisorBits = divisor.GetByteCount() * 8;
+        long maxBits = Math.Max(dividendBits, divisorBits);
+    
+        if (maxBits > 53)
+        {
+            int shift = (int)(maxBits - 53);
+            dividend >>= shift;
+            divisor >>= shift;
+        }
 
-    public static BigInteger SubtractPercent(this BigInteger value, double percent)
+        double result = (double)dividend / (double)divisor;
+        return (float)result;
+    }
+    
+    private readonly static string[] keys = new[] { "K", "M", "B", "T", "Q" };
+
+    public static string ToShortValue(this BigInteger count)
     {
-        BigInteger scaledMultiplier = (long)Math.Round((1.0 - (percent / 100.0)) * Scale);
-        return (value * scaledMultiplier) / Scale;
+        BigInteger absoluteCount = BigInteger.Abs(count);
+
+        if (absoluteCount < 1000)
+        {
+            return count.ToString();
+        }
+
+        string digits = absoluteCount.ToString();
+        int log = digits.Length - 1;
+        int keyIndex = Math.Clamp(log / 3 - 1, 0, keys.Length - 1);
+        string key = keys[keyIndex];
+        int digitsToShow = log % 3 + 1;
+        string mostSignificantDigits = digits.Substring(0, 3);
+        double value = double.Parse(mostSignificantDigits) / Math.Pow(10, 3 - digitsToShow);
+        string sign = count < 0 ? "-" : "";
+        return $"{sign}{value}{key}";
     }
 }

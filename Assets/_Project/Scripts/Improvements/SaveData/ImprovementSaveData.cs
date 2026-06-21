@@ -30,6 +30,11 @@ public class ImprovementSaveData
         _level++;
     }
     
+    public void ResetLevel()
+    {
+        _level = 0;
+    }
+    
     public string Name => _name;
     public int Level => _level;
 }

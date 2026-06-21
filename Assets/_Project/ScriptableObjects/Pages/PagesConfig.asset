@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PagesInfo>k__BackingField:
   - <Number>k__BackingField: 1
+    <Sprite>k__BackingField: {fileID: 21300000, guid: b7c82dc0265d8a048b6a175f9def5c6c, type: 3}
+    <Description>k__BackingField: Rebirth
+  - <Number>k__BackingField: 2
     <Sprite>k__BackingField: {fileID: 21300000, guid: c0f837c8ab9d23440b172c4108220b15, type: 3}
     <Description>k__BackingField: Buildings
-  - <Number>k__BackingField: 2
+  - <Number>k__BackingField: 3
     <Sprite>k__BackingField: {fileID: 21300000, guid: b72e96dc041d0b34cb4131e0febfa56c, type: 3}
     <Description>k__BackingField: Clicker
-  - <Number>k__BackingField: 3
+  - <Number>k__BackingField: 4
     <Sprite>k__BackingField: {fileID: 21300000, guid: dc128529d2f0fdc4296e2680c27a58ce, type: 3}
     <Description>k__BackingField: Improvements
-  <PageAtStartNumber>k__BackingField: 2
+  <PageAtStartNumber>k__BackingField: 3

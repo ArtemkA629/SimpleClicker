@@ -10,6 +10,7 @@ public class BuildingsPresenter
     private readonly BuildingsConfig _buildingsConfig;
 
     public event Action<BuildingData> BuildingBought; 
+    public event Action AllBuildingsRemoved; 
     
     public BuildingsPresenter(BuildingsModel model, MoneyController moneyController, IConfigProvider configProvider)
     {
@@ -32,6 +33,12 @@ public class BuildingsPresenter
         BuildingBought?.Invoke(GetBuildingData(buildingName));
     }
 
+    public void ResetProgress()
+    {
+        _model.RemoveAll();
+        AllBuildingsRemoved?.Invoke();
+    }
+    
     public BuildingData GetBuildingData(string buildingName)
     {
         return _model.GetBuildingData(buildingName);

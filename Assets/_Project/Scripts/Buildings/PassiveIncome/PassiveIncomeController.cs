@@ -34,9 +34,15 @@ public class PassiveIncomeController : ITickable
         }
     }
 
-    public void UpdateIncome(string addedBuildingName)
+    public void AddIncome(string addedBuildingName)
     {
         _model.AddBuilding(addedBuildingName);
+        _view.DisplayTotalIncome(_model.TotalIncome);
+    }
+    
+    public void RemoveAllIncome()
+    {
+        _model.RemoveAll();
         _view.DisplayTotalIncome(_model.TotalIncome);
     }
 }

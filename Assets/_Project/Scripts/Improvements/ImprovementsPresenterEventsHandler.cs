@@ -19,12 +19,14 @@ public class ImprovementsPresenterEventsHandler : IDisposable
     public void Initialize()
     {
         _presenter.ImprovementBought += OnImprovementBought;
+        _presenter.AllImprovementsRemoved += OnAllImprovementsRemoved;
         SaveImprovements();
     }
     
     public void Dispose()
     {
         _presenter.ImprovementBought -= OnImprovementBought;
+        _presenter.AllImprovementsRemoved -= OnAllImprovementsRemoved;
     }
     
     private void OnImprovementBought()
@@ -41,5 +43,12 @@ public class ImprovementsPresenterEventsHandler : IDisposable
     private void UpdateItemsView()
     {
         _view.UpdateAllItemsView(_database);
+    }
+    
+    private void OnAllImprovementsRemoved()
+    {
+        _database.Clear();
+        UpdateItemsView();
+        SaveImprovements();
     }
 }

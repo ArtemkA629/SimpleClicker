@@ -5,4 +5,12 @@ using System.Collections.Generic;
 public class BuildingsDatabase
 {
     public List<BuildingData> BuildingsData;
+
+    public void Clear()
+    {
+        foreach (var data in BuildingsData)
+        {
+            data.ResetCount();
+        }
+    }
 }

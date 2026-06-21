@@ -4,11 +4,13 @@ public class PassiveIncomeModel
 {
     private readonly BuildingsConfig _buildingsConfig;
     private readonly BuildingsDatabase _buildingsDatabase;
+    private readonly GemsModel _gemsModel;
     
-    public PassiveIncomeModel(ISaveSystem saveSystem, IConfigProvider configProvider)
+    public PassiveIncomeModel(ISaveSystem saveSystem, IConfigProvider configProvider, GemsModel gemsModel)
     {
         _buildingsConfig = configProvider.Get<BuildingsConfig>();
         _buildingsDatabase = saveSystem.Load(SavingConstants.BoughtBuildingsId, _buildingsConfig.GetDefaultDatabase());
+        _gemsModel = gemsModel;
     }
 
     public BigInteger TotalIncome
@@ -21,6 +23,8 @@ public class PassiveIncomeModel
             {
                 totalIncome += _buildingsConfig.GetBuildingInfo(data.Name).IncomePerSecond.Multiply(data.Count);
             }
+            
+            totalIncome += totalIncome.Multiply(_gemsModel.Amount / 100f);
             
             return totalIncome;
         }
@@ -44,5 +48,10 @@ public class PassiveIncomeModel
             return;
         
         _buildingsDatabase.BuildingsData.Add(new BuildingData(buildingName, 1));
+    }
+    
+    public void RemoveAll()
+    {
+        _buildingsDatabase.Clear();
     }
 }

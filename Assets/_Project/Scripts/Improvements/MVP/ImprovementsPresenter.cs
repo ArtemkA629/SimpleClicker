@@ -9,6 +9,7 @@ public class ImprovementsPresenter
     private MoneyController _moneyController;
 
     public event Action ImprovementBought;
+    public event Action AllImprovementsRemoved;
     
     public ImprovementsPresenter(ImprovementsModel model, MoneyController moneyController, IConfigProvider configProvider)
     {
@@ -63,5 +64,11 @@ public class ImprovementsPresenter
     {
         ImprovementConfigInfo info = _config.GetInfoByName(improvementName);
         return info.GetDescription(improvementLevel);
+    }
+    
+    public void ResetProgress()
+    {
+        _model.RemoveAll();
+        AllImprovementsRemoved?.Invoke();
     }
 }
