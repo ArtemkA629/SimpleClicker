@@ -1,9 +1,7 @@
-using System;
 using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 public class RebirthView : MonoBehaviour
 {
@@ -15,6 +13,7 @@ public class RebirthView : MonoBehaviour
     [SerializeField] private GameObject _rewardPanel;
     [SerializeField] private GameObject _moneyBar;
     [SerializeField] private GameObject _maxRebirthModeObject;
+    [SerializeField] private RebirthConfirmPopup _confirmPopup;
     
     private RebirthPresenter _presenter;
 
@@ -23,11 +22,13 @@ public class RebirthView : MonoBehaviour
         _presenter = presenter;
         
         _rebirthButton.onClick.AddListener(OnRebirthButtonClicked);
+        _confirmPopup.ConfirmButtonClicked += OnConfirmButtonClicked;
     }
 
     private void OnDestroy()
     {
         _rebirthButton.onClick.RemoveListener(OnRebirthButtonClicked);
+        _confirmPopup.ConfirmButtonClicked -= OnConfirmButtonClicked;
     }
 
     public void DisplayCurrentLevel(int rebirthLevel)
@@ -57,6 +58,12 @@ public class RebirthView : MonoBehaviour
     
     private void OnRebirthButtonClicked()
     {
+        _confirmPopup.Show();
+    }
+    
+    private void OnConfirmButtonClicked()
+    {
         _presenter.TryPerformRebirth();
+        _confirmPopup.Hide();
     }
 }

@@ -43,9 +43,9 @@ public class RebirthConfig : ScriptableObject
 
     public bool IsMaxLevel(int level)
     {
-        if (level <= 0)
+        if (level < 0)
         {
-            Debug.LogError("Rebirth level must be greater than 0");
+            Debug.LogError("Rebirth level must be greater than 0 or equal it");
             return false;
         }
         
