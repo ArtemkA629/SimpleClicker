@@ -14,11 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelsInfo:
   - <Level>k__BackingField: 1
-    <Price>k__BackingField: 250
-    <TotalIncomePercentPerDay>k__BackingField: 2
-  - <Level>k__BackingField: 2
-    <Price>k__BackingField: 8000
-    <TotalIncomePercentPerDay>k__BackingField: 5
-  - <Level>k__BackingField: 3
-    <Price>k__BackingField: 20000
+    _price: 50000
     <TotalIncomePercentPerDay>k__BackingField: 10
+  - <Level>k__BackingField: 2
+    _price: 250000
+    <TotalIncomePercentPerDay>k__BackingField: 15
+  - <Level>k__BackingField: 3
+    _price: 1500000
+    <TotalIncomePercentPerDay>k__BackingField: 20
+  - <Level>k__BackingField: 4
+    _price: 8000000
+    <TotalIncomePercentPerDay>k__BackingField: 25
+  - <Level>k__BackingField: 5
+    _price: 50000000
+    <TotalIncomePercentPerDay>k__BackingField: 30
+  - <Level>k__BackingField: 6
+    _price: 300000000
+    <TotalIncomePercentPerDay>k__BackingField: 35
+  - <Level>k__BackingField: 7
+    _price: 2000000000
+    <TotalIncomePercentPerDay>k__BackingField: 40
+  - <Level>k__BackingField: 8
+    _price: 15000000000
+    <TotalIncomePercentPerDay>k__BackingField: 50
+  - <Level>k__BackingField: 9
+    _price: 90000000000
+    <TotalIncomePercentPerDay>k__BackingField: 65
+  - <Level>k__BackingField: 3
+    _price: 500000000000
+    <TotalIncomePercentPerDay>k__BackingField: 80

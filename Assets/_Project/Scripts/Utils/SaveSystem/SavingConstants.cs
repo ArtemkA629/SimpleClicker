@@ -6,4 +6,6 @@ public static class SavingConstants
     public const string BoughtImprovementsId = "improvements";
     public const string LastLoginTimeId = "last_login_time";
     public const string RebirthId = "rebirth";
+    public const string LocationsId = "locations";
+    public const string SelectedLocationId = "selected_location";
 }

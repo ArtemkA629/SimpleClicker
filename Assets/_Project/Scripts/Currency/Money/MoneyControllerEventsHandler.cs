@@ -7,15 +7,18 @@ public class MoneyControllerEventsHandler : IDisposable
     private readonly ImprovementsView _improvementsView;
     private readonly ImprovementsDatabase _improvementsDatabase;
     private readonly GemsController _gemsController;
+    private readonly LocationsChanger _locationsChanger;
     private readonly ISaveSystem _saveSystem;
     
     public MoneyControllerEventsHandler(MoneyController moneyController, BuildingsView buildingsView, 
-        ImprovementsView improvementsView, ImprovementsModel improvementsModel, ISaveSystem saveSystem)
+        ImprovementsView improvementsView, ImprovementsModel improvementsModel, 
+        LocationsChanger locationsChanger, ISaveSystem saveSystem)
     {
         _moneyController = moneyController;
         _buildingsView = buildingsView;
         _improvementsView = improvementsView;
         _improvementsDatabase = improvementsModel.Database;
+        _locationsChanger = locationsChanger;
         _saveSystem = saveSystem;
     }
 
@@ -34,5 +37,6 @@ public class MoneyControllerEventsHandler : IDisposable
         _buildingsView.UpdateBuildingsPrices(_moneyController.Amount);
         _improvementsView.UpdateAllItemsView(_improvementsDatabase);
         _saveSystem.Save(SavingConstants.MoneyId, _moneyController.Amount.ToString());
+        _locationsChanger.TrySetNewLocation(_moneyController.Amount);
     }
 }

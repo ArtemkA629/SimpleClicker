@@ -14,17 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelsInfo:
   - <Level>k__BackingField: 1
-    <Price>k__BackingField: 1000
+    _price: 500
     <PowerClickMultiplier>k__BackingField: 2
   - <Level>k__BackingField: 2
-    <Price>k__BackingField: 5500
+    _price: 2000
     <PowerClickMultiplier>k__BackingField: 3
   - <Level>k__BackingField: 3
-    <Price>k__BackingField: 28000
-    <PowerClickMultiplier>k__BackingField: 5
+    _price: 8000
+    <PowerClickMultiplier>k__BackingField: 4
   - <Level>k__BackingField: 4
-    <Price>k__BackingField: 120000
-    <PowerClickMultiplier>k__BackingField: 7
+    _price: 32000
+    <PowerClickMultiplier>k__BackingField: 5
   - <Level>k__BackingField: 5
-    <Price>k__BackingField: 350000
-    <PowerClickMultiplier>k__BackingField: 10
+    _price: 130000
+    <PowerClickMultiplier>k__BackingField: 6
+  - <Level>k__BackingField: 6
+    _price: 500000
+    <PowerClickMultiplier>k__BackingField: 7
+  - <Level>k__BackingField: 7
+    _price: 2000000
+    <PowerClickMultiplier>k__BackingField: 8
+  - <Level>k__BackingField: 8
+    _price: 8000000
+    <PowerClickMultiplier>k__BackingField: 8
+  - <Level>k__BackingField: 9
+    _price: 200000000
+    <PowerClickMultiplier>k__BackingField: 15
+  - <Level>k__BackingField: 9
+    _price: 200000000
+    <PowerClickMultiplier>k__BackingField: 15
