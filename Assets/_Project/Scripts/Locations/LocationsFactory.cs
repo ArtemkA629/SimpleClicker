@@ -22,11 +22,11 @@ public class LocationsFactory
         {
             LocationItem item = Object.Instantiate(_itemPrefab, _content);
             bool isOwned = database.UnlockedLocationNames.Contains(locationsInfo[i].Name);
+            item.DisplayInfo(locationsInfo[i].Icon, locationsInfo[i].Name);
 
             if (isOwned)
             {
                 item.DisplayUnlocked();
-                item.DisplayInfo(locationsInfo[i].Icon, locationsInfo[i].Name);
             }
             else
             {

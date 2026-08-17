@@ -37,6 +37,6 @@ public class MoneyControllerEventsHandler : IDisposable
         _buildingsView.UpdateBuildingsPrices(_moneyController.Amount);
         _improvementsView.UpdateAllItemsView(_improvementsDatabase);
         _saveSystem.Save(SavingConstants.MoneyId, _moneyController.Amount.ToString());
-        _locationsChanger.TrySetNewLocation(_moneyController.Amount);
+        _locationsChanger.TryUnlockLocations(_moneyController.Amount);
     }
 }

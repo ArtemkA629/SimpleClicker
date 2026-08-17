@@ -9,7 +9,7 @@ public class LocationsChanger
     
     private LocationsDatabase _database;
 
-    public event Action LocationAdded;
+    public event Action<string> LocationAdded;
     public event Action<string> LocationChanged;
     
     public LocationsChanger(LocationView view, IConfigProvider configProvider)
@@ -24,26 +24,26 @@ public class LocationsChanger
         SetLocation(lastOwnedLocationName);
     }
     
-    public void TrySetNewLocation(BigInteger currentMoney)
+    public void TryUnlockLocations(BigInteger currentMoney)
     {
-        LocationInfo locationInfo = _config.GetInfoByMoney(currentMoney, _database.UnlockedLocationNames[^1]);
+        LocationInfo locationInfo = _config.GetInfoByMoney(currentMoney);
         
         if (_database.UnlockedLocationNames.Contains(locationInfo.Name) == false)
         {
             foreach (LocationInfo info in _config.LocationsInfo)
             {
-                if (info.Name == locationInfo.Name)
-                    break;
-
                 if (_database.UnlockedLocationNames.Contains(info.Name))
                     continue;
                 
-                _database.UnlockedLocationNames.Add(locationInfo.Name);
+                _database.UnlockedLocationNames.Add(info.Name);
+                LocationAdded?.Invoke(info.Name);
+                
+                if (info.Name == locationInfo.Name)
+                {
+                    SetLocation(info.Name);
+                    break;
+                }
             }
-            
-            _database.UnlockedLocationNames.Add(locationInfo.Name);
-            SetLocation(locationInfo.Name);
-            LocationAdded?.Invoke();
         }
     }
 
@@ -52,11 +52,5 @@ public class LocationsChanger
         Sprite lastOwnedLocationIcon = _config.GetIconByName(name);
         _view.SetLocation(lastOwnedLocationIcon);
         LocationChanged?.Invoke(name);
-    }
-    
-    private void SetLastOwnedLocation()
-    {
-        string lastOwnedLocationName = _database.UnlockedLocationNames[^1];
-        SetLocation(lastOwnedLocationName);
     }
 }

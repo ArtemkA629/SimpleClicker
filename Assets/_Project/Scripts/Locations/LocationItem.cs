@@ -12,9 +12,11 @@ public class LocationItem : MonoBehaviour
     [SerializeField] private GameObject _lockPanel;
     [SerializeField] private TextMeshProUGUI _moneyToUnlockText;
 
-    private string _locationName;
+    private string _id;
     
     public event Action<string> Clicked;
+
+    public string Id => _id;
 
     private void OnEnable()
     {
@@ -37,15 +39,15 @@ public class LocationItem : MonoBehaviour
         _lockPanel.SetActive(false);
     }
 
-    public void DisplayInfo(Sprite icon, string locationName)
+    public void DisplayInfo(Sprite icon, string id)
     {
         _icon.sprite = icon;
-        _nameText.text = locationName;
-        _locationName = locationName;
+        _nameText.text = id;
+        _id = id;
     }
     
     private void OnButtonClicked()
     {
-        Clicked?.Invoke(_locationName);
+        Clicked?.Invoke(_id);
     }
 }

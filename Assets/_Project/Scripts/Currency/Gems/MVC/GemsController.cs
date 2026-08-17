@@ -42,7 +42,6 @@ public class GemsController : IInitializable
 
     public void UpdateGemsVisibility()
     {
-        Debug.Log("UpdateGemsVisibility");
         _view.ShowGemsActive(Amount > 0);
     }
 }

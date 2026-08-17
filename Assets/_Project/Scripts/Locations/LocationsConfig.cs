@@ -16,15 +16,8 @@ public class LocationsConfig : ScriptableObject
         };
     }
 
-    public LocationInfo GetInfoByMoney(BigInteger money, string lastLocationName)
+    public LocationInfo GetInfoByMoney(BigInteger money)
     {
-        var lastLocationInfo = Array.Find(LocationsInfo, info => info.Name == lastLocationName);
-
-        if (BigIntegerStatic.Parse(lastLocationInfo.MoneyToUnlock) >= money)
-        {
-            return lastLocationInfo;
-        }
-
         LocationInfo locationInfo = LocationsInfo[0];
         
         foreach (var info in LocationsInfo)
