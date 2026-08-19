@@ -3,6 +3,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -14,11 +15,15 @@ public class PageButton : MonoBehaviour, ICustomButton
     [SerializeField] private RectTransform _rectTransformComponent;
     [SerializeField] private Button _buttonComponent;
     [SerializeField] private Image _icon;
-    [SerializeField] private TextMeshProUGUI _description;
-    [SerializeField] private LayoutElement _layoutElement;
+    [SerializeField] private Image _lockPanel;
+    [FormerlySerializedAs("_description")] [SerializeField] private TextMeshProUGUI _descriptionText;
 
     private PagesViewConfig _pagesViewConfig;
     private Vector2 _initialSizeDelta;
+    private string _description;
+    private bool _isSelected;
+    
+    public string Description => _description;
     
     [Inject]
     private void Construct(IConfigProvider configProvider)
@@ -45,11 +50,13 @@ public class PageButton : MonoBehaviour, ICustomButton
     public void SetUI(Sprite iconSprite, string description)
     {
         _icon.sprite = iconSprite;
-        _description.text = description;
+        _descriptionText.text = description;
+        _description = description; 
     }
 
     public void DisplaySelected(bool isSelected)
     {
+        _isSelected = isSelected;
         _rectTransformComponent.DOKill(true);
         float scaleRatio = isSelected ? _pagesViewConfig.PageButtonScaleRatio : 1f;
         
@@ -57,9 +64,17 @@ public class PageButton : MonoBehaviour, ICustomButton
             _initialSizeDelta * scaleRatio, 
             _pagesViewConfig.PageScaleChangingDuration);
         
-        _description.gameObject.SetActive(isSelected);
+        bool isLockPanelActive = _lockPanel.gameObject.activeInHierarchy;
+        _descriptionText.gameObject.SetActive(isSelected && isLockPanelActive == false);
     }
 
+    public void DisplayLockedState(bool isLocked)
+    {
+        _lockPanel.gameObject.SetActive(isLocked);
+        _descriptionText.gameObject.SetActive(_isSelected && isLocked == false);
+        _buttonComponent.interactable = isLocked == false;
+    }
+    
     public void AddListener(UnityAction listener)
     {
         _buttonComponent.onClick.AddListener(listener);

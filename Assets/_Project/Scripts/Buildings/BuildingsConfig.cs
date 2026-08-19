@@ -11,6 +11,8 @@ public class BuildingsConfig : ScriptableObject
     [field: SerializeField] public BuildingItem BuildingItemPrefab { get; private set; }
     [field: SerializeField] public float PriceMultiplier { get; private set; } = 1.15f;
 
+    public BigInteger FirstBuildingPrice => BuildingsInfo[0].StartPrice;
+    
     public BuildingInfo GetBuildingInfo(string buildingName)
     {
         return BuildingsInfo.FirstOrDefault(i => i.Name  == buildingName);

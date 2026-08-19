@@ -34,10 +34,10 @@ public class GameplayEntryPoint : IInitializable
         _clickerServicesInitializer.Initialize();
         _moneyServicesInitializer.Initialize();
         _gemsServicesInitializer.Initialize();
-        _improvementsServicesInitializer.Initialize();
         _pagesServicesInitializer.Initialize();
         _buildingsServicesInitializer.Initialize();
         _locationsServicesInitializer.Initialize();
         _rebirthServicesInitializer.Initialize();
+        _improvementsServicesInitializer.Initialize();
     }
 }

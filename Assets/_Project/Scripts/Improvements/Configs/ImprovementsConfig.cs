@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Numerics;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObject/Improvement/ImprovementsConfig", fileName = "ImprovementsConfig")]
@@ -7,6 +8,10 @@ public class ImprovementsConfig : ScriptableObject
 {
     [field: SerializeField] public ImprovementConfigInfo[] ImprovementsInfo { get; private set; }
     [field: SerializeField] public ImprovementItem ItemPrefab { get; private set; }
+
+    public BigInteger FirstImprovementPrice => FirstImprovementInfo.GetPriceByLevel(1);
+    
+    private IImprovementLevelInfoConfig FirstImprovementInfo => (IImprovementLevelInfoConfig)ImprovementsInfo[0].LevelInfoConfig;
 
     public ImprovementConfigInfo GetInfoByName(string name)
     {

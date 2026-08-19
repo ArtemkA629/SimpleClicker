@@ -8,6 +8,8 @@ public class RebirthConfig : ScriptableObject
 {
     [SerializeField] private RebirthStage[] _rebirthStages;
 
+    public BigInteger FirstRebirthPrice => _rebirthStages[0].Price;
+    
     public bool TryGetRequiredMoneyForLevel(int level, out BigInteger price)
     {
         if (level <= 0)

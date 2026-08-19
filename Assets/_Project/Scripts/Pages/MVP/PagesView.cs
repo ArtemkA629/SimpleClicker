@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
-public class PagesView : IDisposable
+public class PagesView : MonoBehaviour, IDisposable
 {
+    [SerializeField] private PageViewInfo[] _pageViewInfos;
+    
     private PagesPresenter _presenter;
     private PagesSwiper _swiper;
     
     private Dictionary<PageButton, UnityAction> _pageButtonHandlers = new();
     
-    public PagesView(PagesSwiper swiper)
+    public IEnumerable<PageButton> PageButtons => _pageButtonHandlers.Keys;
+    
+    [Inject]
+    private void Inject(PagesSwiper swiper)
     {
         _swiper = swiper;
     }
@@ -51,9 +58,28 @@ public class PagesView : IDisposable
     {
         DisplayPageSelected(buttonNumber, true);
     }
+
+    public void DisplayPageLockedState(string pageId, bool isLocked)
+    {
+        foreach (PageViewInfo viewInfo in _pageViewInfos)
+        {
+            if (viewInfo.Info.Description == pageId)
+            {
+                viewInfo.LockPanel.SetActive(isLocked);
+                break;
+            }
+        }
+    }
     
     private void OnPageButtonClicked(int number)
     {
         _presenter.SelectPage(number);
     }
+}
+
+[Serializable]
+public struct PageViewInfo
+{
+    [field: SerializeField] public GameObject LockPanel { get; private set; }
+    [field: SerializeField] public PageInfo Info { get; private set; }
 }

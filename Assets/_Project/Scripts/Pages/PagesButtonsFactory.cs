@@ -8,16 +8,26 @@ public class PagesButtonsFactory
     private readonly PagesConfig _pagesConfig;
     private readonly PageButton _pageButtonPrefab;
     private readonly Transform _pagesButtonsContent;
+    private readonly PagesStateHandler _pagesStateHandler;
     private readonly DiContainer _container;
     
-    public PagesButtonsFactory(IConfigProvider configProvider, Transform pagesButtonsContent, DiContainer container)
+    private PagesDatabase _database;
+    
+    public PagesButtonsFactory(IConfigProvider configProvider, Transform pagesButtonsContent, 
+        PagesStateHandler pagesStateHandler, DiContainer container)
     {
         _pagesConfig = configProvider.Get<PagesConfig>();
         _pageButtonPrefab = configProvider.Get<PagesViewConfig>().PageButtonPrefab;
         _pagesButtonsContent = pagesButtonsContent;
+        _pagesStateHandler = pagesStateHandler;
         _container = container;
     }
 
+    public void Initialize(PagesDatabase database)
+    {
+        _database = database;
+    }
+    
     public List<PageButton> CreatePagesButtons()
     {
         List<PageButton> pageButtons = new();
@@ -29,9 +39,16 @@ public class PagesButtonsFactory
             pageButton.Initialize();
             pageButton.SetInfo(info.Number);
             pageButton.SetUI(info.Sprite, info.Description);
+            SetButtonLocked(pageButton, info.Description);
             pageButtons.Add(pageButton);
         }
 
         return pageButtons;
+    }
+
+    private void SetButtonLocked(PageButton button, string description)
+    {
+        bool isLocked = _pagesStateHandler.GetPageLockedState(description);
+        button.DisplayLockedState(isLocked);
     }
 }

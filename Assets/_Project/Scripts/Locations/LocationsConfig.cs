@@ -8,6 +8,8 @@ public class LocationsConfig : ScriptableObject
 {
     [field: SerializeField] public LocationInfo[] LocationsInfo { get; private set; }
     
+    public BigInteger FirstLocationPrice => BigIntegerStatic.Parse(LocationsInfo[0].MoneyToUnlock);
+    
     public LocationsDatabase GetDefaultDatabase()
     {
         return new LocationsDatabase()

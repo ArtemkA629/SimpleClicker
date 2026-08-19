@@ -14,6 +14,7 @@ public class PagesServicesInstaller : MonoInstaller
         BindSwiper();
         BindButtonsFactory();
         BindServicesInitializer();
+        BindPagesStateHandler();
     }
 
     private void BindModel()
@@ -31,6 +32,7 @@ public class PagesServicesInstaller : MonoInstaller
     private void BindView()
     {
         Container.BindInterfacesAndSelfTo<PagesView>()
+            .FromComponentsInHierarchy()
             .AsSingle();
     }
     
@@ -58,6 +60,12 @@ public class PagesServicesInstaller : MonoInstaller
     private void BindServicesInitializer()
     {
         Container.Bind<PagesServicesInitializer>()
+            .AsSingle();
+    }
+
+    private void BindPagesStateHandler()
+    {
+        Container.Bind<PagesStateHandler>()
             .AsSingle();
     }
 }

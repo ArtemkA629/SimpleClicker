@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PagesServicesInitializer
 {
@@ -7,33 +8,49 @@ public class PagesServicesInitializer
     private readonly PagesPresenter _pagesPresenter;
     private readonly PagesView _pagesView;
     private readonly PagesSwiper _pagesSwiper;
+    private readonly PagesStateHandler _pagesStateHandler;
+    private readonly PagesDatabase _database;
     
     public PagesServicesInitializer(PagesFitter pagesFitter, PagesButtonsFactory pagesButtonsFactory, 
-        PagesPresenter pagesPresenter, PagesView pagesView, PagesSwiper pagesSwiper)
+        PagesPresenter pagesPresenter, PagesView pagesView, PagesSwiper pagesSwiper, PagesStateHandler pagesStateHandler, 
+        IConfigProvider configProvider, ISaveSystem saveSystem)
     {
         _pagesFitter = pagesFitter;
         _pagesButtonsFactory = pagesButtonsFactory;
         _pagesPresenter = pagesPresenter;
         _pagesView = pagesView;
         _pagesSwiper = pagesSwiper;
+        _pagesStateHandler = pagesStateHandler;
+        PagesConfig config = configProvider.Get<PagesConfig>();
+        _database = saveSystem.Load(SavingConstants.UnlockedPagesId, config.GetDefaultUnlockedPages());
     }
 
     public void Initialize()
     {
-        InitializePagesFitter();
-        InitializePagesSwiper();
+        _pagesFitter.Initialize();
+        _pagesSwiper.Initialize();
+        _pagesButtonsFactory.Initialize(_database);
+        _pagesStateHandler.Initialize(_database);
         InitializeView();
-        InitializePresenter();
+        _pagesPresenter.Initialize();
     }
-    
-    private void InitializePagesFitter() => _pagesFitter.Initialize();
-    private void InitializePresenter() => _pagesPresenter.Initialize();
-    private void InitializePagesSwiper() => _pagesSwiper.Initialize();
 
     private void InitializeView()
     {
         List<PageButton> pagesButtons = _pagesButtonsFactory.CreatePagesButtons();
+
+        foreach (var button in pagesButtons)
+        {
+            Debug.Log(button.Description);
+        }
+        
         _pagesView.Initialize(_pagesPresenter, pagesButtons);
+
+        foreach (var button in pagesButtons)
+        {
+            bool isLocked = _pagesStateHandler.GetPageLockedState(button.Description);
+            _pagesView.DisplayPageLockedState(button.Description, isLocked);
+        }
     }
     
 }

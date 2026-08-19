@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public class MoneyControllerEventsHandler : IDisposable
 {
@@ -8,17 +9,21 @@ public class MoneyControllerEventsHandler : IDisposable
     private readonly ImprovementsDatabase _improvementsDatabase;
     private readonly GemsController _gemsController;
     private readonly LocationsChanger _locationsChanger;
+    private readonly PagesView _pagesView;
+    private readonly PagesStateHandler _pagesStateHandler;
     private readonly ISaveSystem _saveSystem;
     
     public MoneyControllerEventsHandler(MoneyController moneyController, BuildingsView buildingsView, 
         ImprovementsView improvementsView, ImprovementsModel improvementsModel, 
-        LocationsChanger locationsChanger, ISaveSystem saveSystem)
+        LocationsChanger locationsChanger, PagesView pagesView, PagesStateHandler pagesStateHandler, ISaveSystem saveSystem)
     {
         _moneyController = moneyController;
         _buildingsView = buildingsView;
         _improvementsView = improvementsView;
         _improvementsDatabase = improvementsModel.Database;
         _locationsChanger = locationsChanger;
+        _pagesView = pagesView;
+        _pagesStateHandler = pagesStateHandler;
         _saveSystem = saveSystem;
     }
 
@@ -38,5 +43,21 @@ public class MoneyControllerEventsHandler : IDisposable
         _improvementsView.UpdateAllItemsView(_improvementsDatabase);
         _saveSystem.Save(SavingConstants.MoneyId, _moneyController.Amount.ToString());
         _locationsChanger.TryUnlockLocations(_moneyController.Amount);
+        UpdatePageButtons();
+    }
+
+    private void UpdatePageButtons()
+    {
+        foreach (PageButton button in _pagesView.PageButtons)
+        {
+            bool isLocked = _pagesStateHandler.GetPageLockedState(button.Description);
+            button.DisplayLockedState(isLocked);
+            _pagesView.DisplayPageLockedState(button.Description, isLocked);
+
+            if (isLocked == false)
+            {
+                _pagesStateHandler.SaveUnlocked(button.Description);
+            }
+        }
     }
 }
