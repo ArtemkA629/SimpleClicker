@@ -33,6 +33,12 @@ public class BuildingsPresenter
         BuildingBought?.Invoke(GetBuildingData(buildingName));
     }
 
+    public void AddBuildingForce(string buildingName)
+    {
+        _model.AddBuilding(buildingName);
+        BuildingBought?.Invoke(GetBuildingData(buildingName));
+    }
+    
     public void ResetProgress()
     {
         _model.RemoveAll();

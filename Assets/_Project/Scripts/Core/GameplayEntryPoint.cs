@@ -10,14 +10,14 @@ public class GameplayEntryPoint : IInitializable
     private readonly ImprovementsServicesInitializer _improvementsServicesInitializer;
     private readonly RebirthServicesInitializer _rebirthServicesInitializer;
     private readonly LocationsServicesInitializer _locationsServicesInitializer;
+    private readonly DailyRewardServicesInitializer _dailyRewardServicesInitializer;
     
     public GameplayEntryPoint(ClickerServicesInitializer clickerServicesInitializer, 
         MoneyServicesInitializer moneyServicesInitializer, GemsServicesInitializer gemsServicesInitializer,
-        PagesServicesInitializer pagesServicesInitializer,
-        BuildingsServicesInitializer buildingsServicesInitializer, 
+        PagesServicesInitializer pagesServicesInitializer, BuildingsServicesInitializer buildingsServicesInitializer, 
         ImprovementsServicesInitializer improvementsServicesInitializer, 
-        LocationsServicesInitializer locationsServicesInitializer, 
-        RebirthServicesInitializer rebirthServicesInitializer)
+        LocationsServicesInitializer locationsServicesInitializer, RebirthServicesInitializer rebirthServicesInitializer,
+        DailyRewardServicesInitializer dailyRewardServicesInitializer)
     {
         _clickerServicesInitializer = clickerServicesInitializer;
         _moneyServicesInitializer = moneyServicesInitializer;
@@ -27,6 +27,7 @@ public class GameplayEntryPoint : IInitializable
         _improvementsServicesInitializer = improvementsServicesInitializer;
         _rebirthServicesInitializer = rebirthServicesInitializer;
         _locationsServicesInitializer = locationsServicesInitializer;
+        _dailyRewardServicesInitializer = dailyRewardServicesInitializer;
     }
 
     public void Initialize()
@@ -39,5 +40,6 @@ public class GameplayEntryPoint : IInitializable
         _locationsServicesInitializer.Initialize();
         _rebirthServicesInitializer.Initialize();
         _improvementsServicesInitializer.Initialize();
+        _dailyRewardServicesInitializer.Initialize();
     }
 }
