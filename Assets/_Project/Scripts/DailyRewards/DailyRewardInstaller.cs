@@ -13,6 +13,7 @@ public class DailyRewardInstaller : MonoInstaller
         BindView();
         BindServicesInitializer();
         BindPresenterEventsHandler();
+        BindPopup();
     }
     
     private void BindFactory()
@@ -49,6 +50,13 @@ public class DailyRewardInstaller : MonoInstaller
     private void BindPresenterEventsHandler()
     {
         Container.BindInterfacesAndSelfTo<DailyRewardPresenterEventsHandler>()
+            .AsSingle();
+    }
+    
+    private void BindPopup()
+    {
+        Container.Bind<DailyRewardPopup>()
+            .FromComponentInHierarchy()
             .AsSingle();
     }
 }

@@ -1,42 +1,46 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using Object = UnityEngine.Object;
 
 public class DailyRewardView : IDisposable
 {
-    private DailyRewardPresenter _presenter;
+    private readonly DailyRewardPresenter _presenter;
+    private readonly DailyRewardPopup _popup;
+
     private List<DailyRewardItem> _itemViews = new();
     
-    public DailyRewardView(DailyRewardPresenter presenter)
+    public DailyRewardView(DailyRewardPresenter presenter, DailyRewardPopup popup)
     {
         _presenter = presenter;
+        _popup = popup;
     }
     
     public void Initialize(List<DailyRewardItem> items)
     {
-        ClearItems();
         _itemViews = items;
-        
-        foreach (var item in _itemViews)
+        _presenter.DayRewardClaimed += OnRewardClaimed;
+        InitializePopup();
+    }
+
+    private void InitializePopup()
+    {
+        if (_presenter.CanClaimReward(out var rewardData, out int day))
         {
-            item.SetClaimAction(() => OnRewardClaimButtonClicked(item));
+            DailyRewardItem item = _itemViews.First(x => x.Day == day);
+            UnityAction claimAction = () => _presenter.ClaimReward(day, item);
+            _popup.Display(rewardData.Icon, day, rewardData.RewardDescription, claimAction);
         }
-        
-        _presenter.DayRewardClaimed += RewardClaimed;
     }
     
     public void Dispose()
     {
-        _presenter.DayRewardClaimed -= RewardClaimed;
-    }
-    
-    private void OnRewardClaimButtonClicked(DailyRewardItem item)
-    {
-        _presenter.ClaimReward(item.Day, item);
+        _presenter.DayRewardClaimed -= OnRewardClaimed;
     }
 
-    private void RewardClaimed(int day)
+    private void OnRewardClaimed(int day)
     {
         foreach (var item in _itemViews)
         {
@@ -46,18 +50,5 @@ public class DailyRewardView : IDisposable
                 break;
             }
         }
-    }
-    
-    private void ClearItems()
-    {
-        foreach (var itemView in _itemViews)
-        {
-            if (itemView != null)
-            {
-                Object.Destroy(itemView.gameObject);
-            }
-        }
-        
-        _itemViews.Clear();
     }
 }

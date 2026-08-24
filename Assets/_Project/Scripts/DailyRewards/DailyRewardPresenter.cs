@@ -28,12 +28,23 @@ public class DailyRewardPresenter
         _saveData = saveData;
     }
     
+    public bool CanClaimReward(out DailyRewardData rewardData, out int day)
+    {
+        rewardData = null;
+        day = _saveData.CurrentDay;
+        
+        if (_checker.CanClaimReward(_saveData.CurrentDay) == false) 
+            return false;
+        
+        if (_config.TryGetRewardData(_saveData.CurrentDay, out rewardData) == false)
+            return false;
+
+        return true;
+    }
+    
     public void ClaimReward(int day, DailyRewardItem item)
     {
-        if (day != _saveData.CurrentDay || _checker.CanClaimReward(day) == false) 
-            return;
-        
-        if (_config.TryGetRewardData(day, out var rewardData) == false)
+        if (CanClaimReward(out var rewardData, out _) == false) 
             return;
 
         GiveReward(rewardData);

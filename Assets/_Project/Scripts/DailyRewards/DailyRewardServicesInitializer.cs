@@ -25,8 +25,8 @@ public class DailyRewardServicesInitializer
         _rewardChecker.Initialize(_saveData);
         _itemsFactory.Initialize(_saveData);
         var items = _itemsFactory.CreateRewardItems();
-        _view.Initialize(items);
         _presenter.Initialize(_saveData);
+        _view.Initialize(items);
         _presenterEventsHandler.Initialize();
     }
 }
