@@ -37,8 +37,8 @@ public class ClickableEventsHandler : IDisposable
     
     private void OnClickableClicked(PointerEventData eventData)
     {
-        int clickMultiplier = _powerClickInfoHandler.GetPowerClickMultiplier();
-        _moneyController.AddMoney(clickMultiplier);
+        float clickMultiplier = _powerClickInfoHandler.GetPowerClickMultiplier();
+        _moneyController.AddMoney((int)clickMultiplier);
         _coinPopupService.AnimateAdding(eventData.position);
     }
 }

@@ -38,6 +38,5 @@ public class DailyRewardPopup : MonoBehaviour
         _rewardDescription.text = description;
         _claimAction = claimAction;
         _claimButton.onClick.AddListener(claimAction);
-        
     }
 }

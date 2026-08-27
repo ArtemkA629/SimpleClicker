@@ -11,13 +11,15 @@ public class GameplayEntryPoint : IInitializable
     private readonly RebirthServicesInitializer _rebirthServicesInitializer;
     private readonly LocationsServicesInitializer _locationsServicesInitializer;
     private readonly DailyRewardServicesInitializer _dailyRewardServicesInitializer;
+    private readonly TemporaryBoostServicesInitializer _temporaryBoostServicesInitializer;
     
     public GameplayEntryPoint(ClickerServicesInitializer clickerServicesInitializer, 
         MoneyServicesInitializer moneyServicesInitializer, GemsServicesInitializer gemsServicesInitializer,
         PagesServicesInitializer pagesServicesInitializer, BuildingsServicesInitializer buildingsServicesInitializer, 
         ImprovementsServicesInitializer improvementsServicesInitializer, 
         LocationsServicesInitializer locationsServicesInitializer, RebirthServicesInitializer rebirthServicesInitializer,
-        DailyRewardServicesInitializer dailyRewardServicesInitializer)
+        DailyRewardServicesInitializer dailyRewardServicesInitializer,
+        TemporaryBoostServicesInitializer temporaryBoostServicesInitializer)
     {
         _clickerServicesInitializer = clickerServicesInitializer;
         _moneyServicesInitializer = moneyServicesInitializer;
@@ -28,6 +30,7 @@ public class GameplayEntryPoint : IInitializable
         _rebirthServicesInitializer = rebirthServicesInitializer;
         _locationsServicesInitializer = locationsServicesInitializer;
         _dailyRewardServicesInitializer = dailyRewardServicesInitializer;
+        _temporaryBoostServicesInitializer = temporaryBoostServicesInitializer;
     }
 
     public void Initialize()
@@ -41,5 +44,6 @@ public class GameplayEntryPoint : IInitializable
         _rebirthServicesInitializer.Initialize();
         _improvementsServicesInitializer.Initialize();
         _dailyRewardServicesInitializer.Initialize();
+        _temporaryBoostServicesInitializer.Initialize();
     }
 }
