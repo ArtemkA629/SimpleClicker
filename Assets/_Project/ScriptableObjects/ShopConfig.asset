@@ -15,10 +15,13 @@ MonoBehaviour:
   _shopItems:
   - ItemType: 0
     Amount: 10000
+    InAppId: coins_10000
   - ItemType: 0
     Amount: 100000
+    InAppId: coins_100000
   - ItemType: 0
     Amount: 1000000
+    InAppId: coins_1000000
   _itemPrefabs:
   - ItemType: 0
     Prefab: {fileID: 6677604399907926039, guid: a86a42a502eb93b429d45bbd1cfe14fb, type: 3}

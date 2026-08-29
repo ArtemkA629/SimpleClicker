@@ -14,7 +14,7 @@ public class ShopInstaller : MonoInstaller
 
     private void BindPurchaseService()
     {
-        Container.Bind<ShopPurchaseService>()
+        Container.BindInterfacesAndSelfTo<ShopPurchaseService>()
             .AsSingle();
     }
 

@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/Shop/ShopConfig", fileName = "ShopConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/ShopConfig", fileName = "ShopConfig")]
 public class ShopConfig : ScriptableObject
 {
     [SerializeField] private List<ShopItemData> _shopItems;
@@ -16,22 +17,29 @@ public class ShopConfig : ScriptableObject
             if (mapping.ItemType == itemType)
                 return mapping.Prefab;
         }
+        
         return null;
+    }
+
+    public ShopItemData GetDataByInAppId(string id)
+    {
+        return _shopItems.Find(x => x.InAppId == id);
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class ShopItemPrefabMapping
 {
     public ShopItemType ItemType;
     public ShopItem Prefab;
 }
 
-[System.Serializable]
+[Serializable]
 public class ShopItemData
 {
     public ShopItemType ItemType;
     public int Amount;
+    public string InAppId;
 }
 
 public enum ShopItemType
