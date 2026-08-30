@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 3186576102962415856}
   - component: {fileID: 8507468861648490490}
   - component: {fileID: 532212219148702053}
+  - component: {fileID: 7792206982489283272}
   m_Layer: 5
   m_Name: LocationItem
   m_TagString: Untagged
@@ -601,6 +602,19 @@ MonoBehaviour:
   _buttonComponent: {fileID: 8507468861648490490}
   _lockPanel: {fileID: 3854024962627575867}
   _moneyToUnlockText: {fileID: 4592401986436625070}
+--- !u!114 &7792206982489283272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5160976007655553088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc89cd892544f548819cc02f9eb5b6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound: {fileID: 8300000, guid: d6a9aa9da55aebd41b5d50f8dddc98f0, type: 3}
 --- !u!1 &6116437387883606549
 GameObject:
   m_ObjectHideFlags: 0

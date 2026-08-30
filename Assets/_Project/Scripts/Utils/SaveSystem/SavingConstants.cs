@@ -10,5 +10,5 @@ public static class SavingConstants
     public const string SelectedLocationId = "selected_location";
     public const string UnlockedPagesId = "unlocked_pages";
     public const string DailyRewardId = "daily_reward";
-    public const string TemporaryBoostId = "temporary_boost";
+    public const string AudioId = "audio";
 }

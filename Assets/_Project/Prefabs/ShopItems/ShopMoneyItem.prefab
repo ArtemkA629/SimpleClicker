@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 3390540241136899638}
   - component: {fileID: 1507298086342819548}
   - component: {fileID: 6677604399907926039}
+  - component: {fileID: 8578858023151233187}
   m_Layer: 5
   m_Name: ShopMoneyItem
   m_TagString: Untagged
@@ -212,6 +213,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buyButton: {fileID: 1507298086342819548}
   _titleText: {fileID: 4325170693617471789}
+--- !u!114 &8578858023151233187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6870248367774027495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc89cd892544f548819cc02f9eb5b6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound: {fileID: 8300000, guid: d6a9aa9da55aebd41b5d50f8dddc98f0, type: 3}
 --- !u!1 &7766614314066041126
 GameObject:
   m_ObjectHideFlags: 0

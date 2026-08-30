@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8937144372804002765}
   - component: {fileID: 6042763060565940621}
   - component: {fileID: 1354126189410637895}
+  - component: {fileID: -4950658848132390998}
   m_Layer: 5
   m_Name: PageButton
   m_TagString: Untagged
@@ -168,6 +169,19 @@ MonoBehaviour:
   _icon: {fileID: 1817092833148780712}
   _lockPanel: {fileID: 1228476692049062904}
   _descriptionText: {fileID: 6870736301017384669}
+--- !u!114 &-4950658848132390998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089380480945041774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc89cd892544f548819cc02f9eb5b6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound: {fileID: 8300000, guid: d6a9aa9da55aebd41b5d50f8dddc98f0, type: 3}
 --- !u!1 &4450790394287928833
 GameObject:
   m_ObjectHideFlags: 0

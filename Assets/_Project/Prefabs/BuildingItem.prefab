@@ -103,6 +103,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -239,6 +240,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -285,6 +287,7 @@ GameObject:
   - component: {fileID: 7344156304670370161}
   - component: {fileID: 239951616220008789}
   - component: {fileID: 8699226320249777016}
+  - component: {fileID: 180909839530374770}
   m_Layer: 5
   m_Name: BuildingItem
   m_TagString: Untagged
@@ -416,6 +419,19 @@ MonoBehaviour:
   _nameText: {fileID: 620400190048071651}
   _priceText: {fileID: 3529761995994217245}
   _countText: {fileID: 35187085662937272}
+--- !u!114 &180909839530374770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770447511355060227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc89cd892544f548819cc02f9eb5b6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound: {fileID: 8300000, guid: d6a9aa9da55aebd41b5d50f8dddc98f0, type: 3}
 --- !u!1 &3767577712820353616
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +535,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
