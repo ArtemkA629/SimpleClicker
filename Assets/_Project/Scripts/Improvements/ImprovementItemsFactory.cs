@@ -1,17 +1,20 @@
 using UnityEngine;
+using Zenject;
 
 public class ImprovementItemsFactory
 {
     private readonly Transform _itemsParent;
+    private readonly DiContainer _container;
     private readonly ImprovementsConfig _config;
 
     private ImprovementConfigInfo _currentImprovementInfo;
     private ImprovementSaveData _saveData;
     private bool _canBuyImprovement;
     
-    public ImprovementItemsFactory(Transform itemsParent, IConfigProvider configProvider)
+    public ImprovementItemsFactory(Transform itemsParent, DiContainer container, IConfigProvider configProvider)
     {
         _itemsParent = itemsParent;
+        _container = container;
         _config = configProvider.Get<ImprovementsConfig>();
     }
     
@@ -24,7 +27,7 @@ public class ImprovementItemsFactory
     
     public ImprovementItem CreateItem()
     {
-        ImprovementItem item = Object.Instantiate(_config.ItemPrefab, _itemsParent);
+        var item = _container.InstantiatePrefabForComponent<ImprovementItem>(_config.ItemPrefab, _itemsParent);
         ImprovementTypeConfig typeConfig = _currentImprovementInfo.TypeConfig;
         IImprovementLevelInfoConfig levelInfoConfig = (IImprovementLevelInfoConfig)_currentImprovementInfo.LevelInfoConfig;
         IImprovementDescriptionCreator descriptionCreator = typeConfig.Type.GetDescriptionCreator();

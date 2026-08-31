@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Numerics;
+using UnityEngine.Events;
 
 public class OfflineIncomeService
 {
@@ -9,14 +10,17 @@ public class OfflineIncomeService
     private readonly ImprovementsModel _improvementsModel;
     private readonly ImprovementConfigInfo _offlineIncomeConfigInfo;
     private readonly PassiveIncomeModel _passiveIncomeModel;
+    private readonly OfflineIncomeView _offlineIncomeView;
     
     public OfflineIncomeService(LastLoginTimeSaver lastLoginTimeSaver, MoneyController moneyController,
-        ImprovementsModel improvementsModel, PassiveIncomeModel passiveIncomeModel, IConfigProvider configProvider)
+        ImprovementsModel improvementsModel, PassiveIncomeModel passiveIncomeModel, 
+        OfflineIncomeView offlineIncomeView, IConfigProvider configProvider)
     {
         _lastLoginTimeSaver = lastLoginTimeSaver;
         _moneyController = moneyController;
         _improvementsModel = improvementsModel;
         _passiveIncomeModel = passiveIncomeModel;
+        _offlineIncomeView = offlineIncomeView;
         var offlineIncomeConfig = configProvider.Get<ImprovementsConfig>();
         
         _offlineIncomeConfigInfo = offlineIncomeConfig.ImprovementsInfo
@@ -39,6 +43,15 @@ public class OfflineIncomeService
         var levelInfo = (OfflineIncomeLevelInfo)levelInfoConfig.GetLevelInfo(currentImprovementLevel);
         int offlineIncomePercent = levelInfo.TotalIncomePercentPerDay;
         BigInteger income = _passiveIncomeModel.TotalIncome.Multiply(daysPast * offlineIncomePercent / 100f);
-        _moneyController.AddMoney(income);
+        UnityAction claimAction = () => _moneyController.AddMoney(income);
+
+        if (income > 0)
+        {
+            _offlineIncomeView.ShowPopup(income, claimAction);
+        }
+        else
+        {
+            claimAction.Invoke();
+        }
     }
 }

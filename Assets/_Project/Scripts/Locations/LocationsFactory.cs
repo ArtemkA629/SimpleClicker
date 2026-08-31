@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
+using Zenject;
 
 public class LocationsFactory
 {
     private readonly LocationItem _itemPrefab;
     private readonly Transform _content;
+    private readonly DiContainer _container;
     private readonly LocationsConfig _config;
     
-    public LocationsFactory(LocationItem itemPrefab, Transform content, IConfigProvider configProvider)
+    public LocationsFactory(LocationItem itemPrefab, Transform content, DiContainer container, 
+        IConfigProvider configProvider)
     {
         _itemPrefab = itemPrefab;
         _content = content;
+        _container = container;
         _config = configProvider.Get<LocationsConfig>();
     }
 
@@ -20,7 +24,7 @@ public class LocationsFactory
         
         for (int i = 0; i < _config.LocationsInfo.Length; i++)
         {
-            LocationItem item = Object.Instantiate(_itemPrefab, _content);
+            var item = _container.InstantiatePrefabForComponent<LocationItem>(_itemPrefab, _content);
             bool isOwned = database.UnlockedLocationNames.Contains(locationsInfo[i].Name);
             item.DisplayInfo(locationsInfo[i].Icon, locationsInfo[i].Name);
 
