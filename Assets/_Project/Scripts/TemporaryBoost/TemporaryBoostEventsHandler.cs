@@ -1,3 +1,5 @@
+using Object = UnityEngine.Object;
+
 public class TemporaryBoostEventsHandler
 {
     private readonly TemporaryBoostAnimator _animator;
@@ -9,12 +11,25 @@ public class TemporaryBoostEventsHandler
 
     public void RegisterBoost(TemporaryBoost boost)
     {
-        boost.Destroyed += OnBoostDestroyed;
+        boost.TimePassed += OnBoostTimePassed;
+    }
+    
+    public void UnregisterBoost(TemporaryBoost boost)
+    {
+        boost.TimePassed -= OnBoostTimePassed;
     }
 
-    private void OnBoostDestroyed(TemporaryBoost boost)
+    private void OnBoostTimePassed(TemporaryBoost boost)
     {
-        boost.Destroyed -= OnBoostDestroyed;
+        boost.TimePassed -= OnBoostTimePassed;
         _animator.StopAnimations(boost);
+        Object.Destroy(boost.gameObject);
+    }
+    
+    public void DestroyBoost(TemporaryBoost boost)
+    {
+        boost.TimePassed -= OnBoostTimePassed;
+        _animator.StopAnimations(boost);
+        Object.Destroy(boost.gameObject);
     }
 }

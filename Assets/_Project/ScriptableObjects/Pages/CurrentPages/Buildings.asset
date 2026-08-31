@@ -15,3 +15,5 @@ MonoBehaviour:
   <Number>k__BackingField: 2
   <Sprite>k__BackingField: {fileID: 21300000, guid: c0f837c8ab9d23440b172c4108220b15, type: 3}
   <Description>k__BackingField: Buildings
+  <TutorialDescription>k__BackingField: Here you can buy buildings to increase your
+    passive income.

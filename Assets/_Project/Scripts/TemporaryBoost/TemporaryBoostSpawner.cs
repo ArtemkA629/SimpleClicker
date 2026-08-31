@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 public class TemporaryBoostSpawner : ITickable
 {
@@ -13,6 +15,9 @@ public class TemporaryBoostSpawner : ITickable
     
     private List<TemporaryBoost> _activeBoosts = new();
     private float _spawnTimer;
+    private bool _isSpawnBlocked;
+    
+    public event Action<TemporaryBoost> OnBoostSpawned;
     
     public TemporaryBoostSpawner(RectTransform[] spawnPanels, TemporaryBoostController controller, 
         TemporaryBoostAnimator animator, TemporaryBoostEventsHandler eventsHandler, IConfigProvider configProvider)
@@ -31,6 +36,9 @@ public class TemporaryBoostSpawner : ITickable
     
     public void Tick()
     {
+        if (_isSpawnBlocked)
+            return;
+        
         _spawnTimer -= Time.deltaTime;
         
         if (_spawnTimer <= 0f)
@@ -40,6 +48,23 @@ public class TemporaryBoostSpawner : ITickable
         }
         
         CleanupDestroyedBoosts();
+    }
+    
+    public void ReleaseBoostFromSpawnerControl(TemporaryBoost boost)
+    {
+        boost.Clicked -= OnBoostClicked;
+        _activeBoosts.Remove(boost);
+        _eventsHandler.UnregisterBoost(boost);
+    }
+    
+    public void BlockSpawning()
+    {
+        _isSpawnBlocked = true;
+    }
+    
+    public void UnblockSpawning()
+    {
+        _isSpawnBlocked = false;
     }
     
     private void SpawnBoost()
@@ -58,6 +83,18 @@ public class TemporaryBoostSpawner : ITickable
         _animator.StartAnimations(boost, _config.BoostLifetime);
         _activeBoosts.Add(boost);
         _eventsHandler.RegisterBoost(boost);
+        
+        boost.Clicked += OnBoostClicked;
+        
+        OnBoostSpawned?.Invoke(boost);
+    }
+    
+    private void OnBoostClicked(TemporaryBoost boost)
+    {
+        _controller.CollectBoost();
+        _eventsHandler.DestroyBoost(boost);
+        _activeBoosts.Remove(boost);
+        boost.Clicked -= OnBoostClicked;
     }
     
     private Vector2 GetRandomPositionInPanel(RectTransform panel)

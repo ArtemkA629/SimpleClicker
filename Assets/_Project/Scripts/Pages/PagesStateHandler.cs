@@ -1,4 +1,6 @@
-﻿public class PagesStateHandler
+using System;
+
+public class PagesStateHandler
 {
     private const string RebirthId = "Rebirth";
     private const string BuildingsId = "Buildings";
@@ -13,6 +15,8 @@
     private readonly ISaveSystem _saveSystem;
     
     private PagesDatabase _database;
+    
+    public event Action<string> OnPageUnlocked;
 
     public PagesStateHandler(IConfigProvider configProvider, MoneyModel moneyModel, ISaveSystem saveSystem)
     {
@@ -60,5 +64,6 @@
         
         _database.Add(id);
         _saveSystem.Save(SavingConstants.UnlockedPagesId, _database);
+        OnPageUnlocked?.Invoke(id);
     }
 }

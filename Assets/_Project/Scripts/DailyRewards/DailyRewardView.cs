@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using UnityEngine.Events;
-using Object = UnityEngine.Object;
 
 public class DailyRewardView : IDisposable
 {
@@ -18,14 +16,23 @@ public class DailyRewardView : IDisposable
         _popup = popup;
     }
     
-    public void Initialize(List<DailyRewardItem> items)
+    public void Initialize(List<DailyRewardItem> items, bool canShowPopup)
     {
         _itemViews = items;
         _presenter.DayRewardClaimed += OnRewardClaimed;
-        InitializePopup();
+        
+        if (canShowPopup == false)
+            return;
+        
+        ShowClaimPopup();
     }
 
-    private void InitializePopup()
+    public void Dispose()
+    {
+        _presenter.DayRewardClaimed -= OnRewardClaimed;
+    }
+    
+    public void ShowClaimPopup()
     {
         if (_presenter.CanClaimReward(out var rewardData, out int day))
         {
@@ -33,11 +40,6 @@ public class DailyRewardView : IDisposable
             UnityAction claimAction = () => _presenter.ClaimReward(day, item);
             _popup.Display(rewardData.Icon, day, rewardData.RewardDescription, claimAction);
         }
-    }
-    
-    public void Dispose()
-    {
-        _presenter.DayRewardClaimed -= OnRewardClaimed;
     }
 
     private void OnRewardClaimed(int day)

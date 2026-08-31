@@ -84,9 +84,6 @@ public class AudioService : ITickable
 
     private void ApplyMusicVolume()
     {
-        Debug.Log(_saveData == null);
-        Debug.Log(_config == null);
-        
         float volume = _saveData.MusicEnabled ? _config.MaxVolume : _config.MinVolume;
         _config.AudioMixer.SetFloat(_config.MusicVolumeParameter, volume);
     }

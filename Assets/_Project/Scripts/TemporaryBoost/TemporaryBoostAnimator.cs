@@ -5,6 +5,7 @@ using DG.Tweening;
 public class TemporaryBoostAnimator
 {
     private readonly TemporaryBoostAnimationInfo _animationInfo;
+    private Tween _scheduledDisappearTween;
     
     public TemporaryBoostAnimator(IConfigProvider configProvider)
     {
@@ -23,7 +24,7 @@ public class TemporaryBoostAnimator
         
         AddAppearAnimation(animationSequence, rectTransform, image);
         AddBounceAnimation(animationSequence, rectTransform);
-        AddFloatAnimation(animationSequence, rectTransform);
+        AddFloatAnimation(rectTransform);
         
         ScheduleDisappearAnimation(rectTransform, image, lifetime);
     }
@@ -58,16 +59,16 @@ public class TemporaryBoostAnimator
             .SetEase(Ease.InOutQuad));
     }
     
-    private void AddFloatAnimation(Sequence sequence, RectTransform rectTransform)
+    private void AddFloatAnimation(RectTransform rectTransform)
     {
-        sequence.Append(rectTransform.DOAnchorPosY(rectTransform.anchoredPosition.y + _animationInfo.FloatAmplitude, _animationInfo.FloatDuration)
+        rectTransform.DOAnchorPosY(rectTransform.anchoredPosition.y + _animationInfo.FloatAmplitude, _animationInfo.FloatDuration)
             .SetEase(Ease.InOutSine)
-            .SetLoops(-1, LoopType.Yoyo));
+            .SetLoops(-1, LoopType.Yoyo);
     }
     
     private void ScheduleDisappearAnimation(RectTransform rectTransform, Image image, float lifetime)
     {
-        DOVirtual.DelayedCall(lifetime - _animationInfo.FadeDuration, () =>
+        _scheduledDisappearTween = DOVirtual.DelayedCall(lifetime - _animationInfo.FadeDuration, () =>
         {
             if (rectTransform != null)
             {
@@ -80,6 +81,15 @@ public class TemporaryBoostAnimator
                 }
             }
         });
+    }
+    
+    public void CancelScheduledDisappearAnimation()
+    {
+        if (_scheduledDisappearTween != null)
+        {
+            _scheduledDisappearTween.Kill();
+            _scheduledDisappearTween = null;
+        }
     }
     
     public void StopAnimations(TemporaryBoost boost)

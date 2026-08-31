@@ -10,8 +10,10 @@ public class TemporaryBoost : MonoBehaviour
     
     private TemporaryBoostController _controller;
     private float _lifetime;
+    private bool _isPaused;
 
-    public event Action<TemporaryBoost> Destroyed;
+    public event Action<TemporaryBoost> TimePassed;
+    public event Action<TemporaryBoost> Clicked;
     
     public RectTransform RectTransform => _rectTransform;
     public Image Image => _image;
@@ -20,29 +22,41 @@ public class TemporaryBoost : MonoBehaviour
     {
         _controller = controller;
         _lifetime = lifetime;
+        _isPaused = false;
         
         _button.onClick.AddListener(OnClicked);
     }
     
+    public void PauseTimer()
+    {
+        _isPaused = true;
+    }
+    
+    public void ResumeTimer()
+    {
+        _isPaused = false;
+    }
+    
     private void OnClicked()
     {
-        _controller.CollectBoost();
-        Destroy(gameObject);
+        Clicked?.Invoke(this);
     }
     
     private void Update()
     {
+        if (_isPaused)
+            return;
+        
         _lifetime -= Time.deltaTime;
         
         if (_lifetime <= 0f)
         {
-            Destroy(gameObject);
+            TimePassed?.Invoke(this);
         }
     }
     
     private void OnDestroy()
     {
         _button.onClick.RemoveListener(OnClicked);
-        Destroyed?.Invoke(this);
     }
 }
