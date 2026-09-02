@@ -3,12 +3,12 @@ using System;
 
 public class ShopServicesInitializer : IDisposable
 {
-    private readonly ShopPurchaseService _purchaseService;
+    private readonly IShopPurchaseService _purchaseService;
     private readonly ShopItemsFactory _itemsFactory;
     
     private List<ShopItem> _createdItems;
 
-    public ShopServicesInitializer(ShopPurchaseService purchaseService, ShopItemsFactory itemsFactory)
+    public ShopServicesInitializer(IShopPurchaseService purchaseService, ShopItemsFactory itemsFactory)
     {
         _purchaseService = purchaseService;
         _itemsFactory = itemsFactory;
@@ -16,7 +16,6 @@ public class ShopServicesInitializer : IDisposable
 
     public void Initialize()
     {
-        _purchaseService.Initialize();
         _createdItems = _itemsFactory.CreateShopItems();
 
         foreach (var item in _createdItems)

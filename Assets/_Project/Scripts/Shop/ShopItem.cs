@@ -7,15 +7,17 @@ public class ShopItem : MonoBehaviour
 {
     [SerializeField] private Button _buyButton;
     [SerializeField] private TextMeshProUGUI _titleText;
+    [SerializeField] private TextMeshProUGUI _priceText;
 
     private ShopItemData _itemData;
 
     public event Action<ShopItemData> PurchaseRequested;
 
-    public void Initialize(ShopItemData itemData)
+    public void Initialize(ShopItemData itemData, string price)
     {
         _itemData = itemData;
         _titleText.text = itemData.Amount.ToShortValue();
+        _priceText.text = price;
         _buyButton.onClick.AddListener(OnBuyButtonClicked);
     }
 

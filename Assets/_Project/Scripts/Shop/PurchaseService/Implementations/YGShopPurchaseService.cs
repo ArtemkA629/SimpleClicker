@@ -1,13 +1,13 @@
 using System;
 using System.Numerics;
-using YG;
+using YG;using Zenject;
 
-public class ShopPurchaseService : IDisposable
+public class YGShopPurchaseService : IInitializable, IDisposable, IShopPurchaseService
 {
     private readonly MoneyController _moneyController;
     private readonly ShopConfig _shopConfig;
 
-    public ShopPurchaseService(MoneyController moneyController, IConfigProvider configProvider)
+    public YGShopPurchaseService(MoneyController moneyController, IConfigProvider configProvider)
     {
         _moneyController = moneyController;
         _shopConfig = configProvider.Get<ShopConfig>();
@@ -28,6 +28,11 @@ public class ShopPurchaseService : IDisposable
         YG2.BuyPayments(itemData.InAppId);
     }
 
+    public string GetPriceText(ShopItemData itemData)
+    {
+        return YG2.PurchaseByID(itemData.InAppId)?.price ?? "--";
+    }
+    
     private void OnPurchaseSuccess(string id)
     {
         ShopItemData itemData = _shopConfig.GetDataByInAppId(id);

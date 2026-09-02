@@ -4,13 +4,16 @@ using Zenject;
 
 public class ShopItemsFactory
 {
-    private readonly ShopConfig _config;
     private readonly Transform _itemsContainer;
+    private readonly IShopPurchaseService _shopPurchaseService;
+    private readonly ShopConfig _config;
     private readonly DiContainer _container;
 
-    public ShopItemsFactory(Transform itemsContainer, IConfigProvider configProvider, DiContainer container)
+    public ShopItemsFactory(Transform itemsContainer, IShopPurchaseService shopPurchaseService,
+        IConfigProvider configProvider, DiContainer container)
     {
         _itemsContainer = itemsContainer;
+        _shopPurchaseService = shopPurchaseService;
         _config = configProvider.Get<ShopConfig>();
         _container = container;
     }
@@ -32,7 +35,8 @@ public class ShopItemsFactory
     {
         ShopItem prefab = _config.GetPrefabForType(itemData.ItemType);
         ShopItem item = _container.InstantiatePrefabForComponent<ShopItem>(prefab, _itemsContainer);
-        item.Initialize(itemData);
+        string price = _shopPurchaseService.GetPriceText(itemData);
+        item.Initialize(itemData, price);
         return item;
     }
 }
