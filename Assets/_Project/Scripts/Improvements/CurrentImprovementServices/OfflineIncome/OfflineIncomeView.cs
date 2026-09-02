@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 public class OfflineIncomeView : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class OfflineIncomeView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _incomeText;
 
     private UnityAction _claimAction;
+    private ILocalizationService _localizationService;
 
     private void Start()
     {
@@ -20,15 +22,26 @@ public class OfflineIncomeView : MonoBehaviour
 
     private void OnDestroy()
     {
-        _claimButton.onClick.RemoveListener(_claimAction);
+        if (_claimAction != null)
+        {
+            _claimButton.onClick.RemoveListener(_claimAction);
+        }
+        
         _claimButton.onClick.RemoveListener(_popup.Hide);
     }
 
+    [Inject]
+    private void Construct(ILocalizationService localizationService)
+    {
+        _localizationService = localizationService;
+    }
+    
     public void ShowPopup(BigInteger income, UnityAction action)
     {
         _claimAction = action;
         _popup.Show();
         _claimButton.onClick.AddListener(action);
-        _incomeText.text = "While you were out, you earned " + income.ToShortValue();
+        _incomeText.text = $"{_localizationService.GetText(LocalizationConstants.OfflineIncomePrescription)} " 
+                           + income.ToShortValue();
     }
 }

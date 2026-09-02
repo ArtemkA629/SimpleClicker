@@ -41,7 +41,7 @@ public class ImprovementsServicesInitializer
         
         foreach (var improvementInfo in _config.ImprovementsInfo)
         {
-            ImprovementSaveData saveData = _database.GetData(improvementInfo.TypeConfig.Name);
+            ImprovementSaveData saveData = _database.GetData(improvementInfo.TypeConfig.Id);
             var levelInfoConfig = (IImprovementLevelInfoConfig)improvementInfo.LevelInfoConfig;
             int nextLevelImprovementLevel = levelInfoConfig.LevelsInfo.Length == saveData.Level ? saveData.Level : saveData.Level + 1;
             var nextLevelPrice = levelInfoConfig.GetPriceByLevel(nextLevelImprovementLevel);

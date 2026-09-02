@@ -21,7 +21,7 @@ public class PassiveIncomeModel
             
             foreach (BuildingData data in _buildingsDatabase.BuildingsData)
             {
-                totalIncome += _buildingsConfig.GetBuildingInfo(data.Name).IncomePerSecond.Multiply(data.Count);
+                totalIncome += _buildingsConfig.GetBuildingInfo(data.ID).IncomePerSecond.Multiply(data.Count);
             }
             
             totalIncome += totalIncome.Multiply(_gemsModel.Amount / 100f);
@@ -36,7 +36,7 @@ public class PassiveIncomeModel
         
         foreach (BuildingData data in _buildingsDatabase.BuildingsData)
         {
-            if (data.Name == buildingName)
+            if (data.ID == buildingName)
             {
                 data.Add();
                 buildingFound = true;

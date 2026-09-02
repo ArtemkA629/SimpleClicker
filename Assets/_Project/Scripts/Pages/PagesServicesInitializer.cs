@@ -29,7 +29,6 @@ public class PagesServicesInitializer
     {
         _pagesFitter.Initialize();
         _pagesSwiper.Initialize();
-        _pagesButtonsFactory.Initialize(_database);
         _pagesStateHandler.Initialize(_database);
         InitializeView();
         _pagesPresenter.Initialize();
@@ -41,15 +40,15 @@ public class PagesServicesInitializer
 
         foreach (var button in pagesButtons)
         {
-            Debug.Log(button.Description);
+            Debug.Log(button.Id);
         }
         
         _pagesView.Initialize(_pagesPresenter, pagesButtons);
 
         foreach (var button in pagesButtons)
         {
-            bool isLocked = _pagesStateHandler.GetPageLockedState(button.Description);
-            _pagesView.DisplayPageLockedState(button.Description, isLocked);
+            bool isLocked = _pagesStateHandler.GetPageLockedState(button.Id);
+            _pagesView.DisplayPageLockedState(button.Id, isLocked);
         }
     }
     

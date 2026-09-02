@@ -2,6 +2,7 @@ using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class RebirthView : MonoBehaviour
 {
@@ -16,6 +17,19 @@ public class RebirthView : MonoBehaviour
     [SerializeField] private RebirthConfirmPopup _confirmPopup;
     
     private RebirthPresenter _presenter;
+    private ILocalizationService _localizationService;
+
+    private void OnDestroy()
+    {
+        _rebirthButton.onClick.RemoveListener(OnRebirthButtonClicked);
+        _confirmPopup.ConfirmButtonClicked -= OnConfirmButtonClicked;
+    }
+
+    [Inject]
+    private void Construct(ILocalizationService localizationService)
+    {
+        _localizationService = localizationService;
+    }
 
     public void Initialize(RebirthPresenter presenter)
     {
@@ -24,21 +38,17 @@ public class RebirthView : MonoBehaviour
         _rebirthButton.onClick.AddListener(OnRebirthButtonClicked);
         _confirmPopup.ConfirmButtonClicked += OnConfirmButtonClicked;
     }
-
-    private void OnDestroy()
-    {
-        _rebirthButton.onClick.RemoveListener(OnRebirthButtonClicked);
-        _confirmPopup.ConfirmButtonClicked -= OnConfirmButtonClicked;
-    }
-
+    
     public void DisplayCurrentLevel(int rebirthLevel)
     {
-        _rebirthLevelText.text = "Current level: " + rebirthLevel;
+        _rebirthLevelText.text = $"{_localizationService.GetText(LocalizationConstants.CurrentLevel)}: " 
+                                 + rebirthLevel;
     }
 
     public void UpdateViewOnMoneyChanged(BigInteger currentMoney, BigInteger requiredMoney)
     {
-        _requiredMoneyText.text = $"Required money: {currentMoney.ToShortValue()}/{requiredMoney.ToShortValue()}";
+        _requiredMoneyText.text = $"{_localizationService.GetText(LocalizationConstants.RequiredMoney)}: " +
+                                  $"{currentMoney.ToShortValue()}/{requiredMoney.ToShortValue()}";
         _moneyFillBar.fillAmount = requiredMoney == 0 ? 1f : currentMoney.Divide(requiredMoney);
         _rebirthButton.interactable = currentMoney >= requiredMoney;
     }

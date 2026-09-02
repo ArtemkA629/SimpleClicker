@@ -11,7 +11,6 @@ public class PagesButtonsFactory
     private readonly PagesStateHandler _pagesStateHandler;
     private readonly DiContainer _container;
     
-    private PagesDatabase _database;
     
     public PagesButtonsFactory(IConfigProvider configProvider, Transform pagesButtonsContent, 
         PagesStateHandler pagesStateHandler, DiContainer container)
@@ -21,11 +20,6 @@ public class PagesButtonsFactory
         _pagesButtonsContent = pagesButtonsContent;
         _pagesStateHandler = pagesStateHandler;
         _container = container;
-    }
-
-    public void Initialize(PagesDatabase database)
-    {
-        _database = database;
     }
     
     public List<PageButton> CreatePagesButtons()
@@ -38,8 +32,8 @@ public class PagesButtonsFactory
             var pageButton = _container.InstantiatePrefabForComponent<PageButton>(_pageButtonPrefab, _pagesButtonsContent);
             pageButton.Initialize();
             pageButton.SetInfo(info.Number);
-            pageButton.SetUI(info.Sprite, info.Description);
-            SetButtonLocked(pageButton, info.Description);
+            pageButton.SetUI(info.Sprite, info.Id);
+            SetButtonLocked(pageButton, info.Id);
             pageButtons.Add(pageButton);
         }
 

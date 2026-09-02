@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 public class ImprovementItem : MonoBehaviour, ICustomButton
 {
@@ -13,14 +14,22 @@ public class ImprovementItem : MonoBehaviour, ICustomButton
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private Image _lockImage;
     [SerializeField] private Button _buyButton;
+
+    private ILocalizationService _localizationService;
     
-    public string Name { get; private set; }
-    
-    public void SetInfo(Sprite icon, string improvementName, string description, int level, BigInteger price)
+    public string Id { get; private set; }
+
+    [Inject]
+    private void Construct(ILocalizationService localizationService)
     {
-        Name = improvementName;
+        _localizationService = localizationService;
+    }
+    
+    public void SetInfo(Sprite icon, string id, string description, int level, BigInteger price)
+    {
+        Id = id;
         _icon.sprite = icon;
-        _nameText.text = improvementName;
+        _nameText.text = _localizationService.GetText(id);
         UpdateDescription(description);
         UpdateLevel(level);
         UpdatePrice(price);
@@ -33,7 +42,7 @@ public class ImprovementItem : MonoBehaviour, ICustomButton
 
     public void UpdateLevel(int level)
     {
-        _levelText.text = level == 0 ? "" : $"Lvl {level}";
+        _levelText.text = level == 0 ? "" : $"{_localizationService.GetText(LocalizationConstants.Level)} {level}";
     }
 
     public void UpdatePrice(BigInteger price)

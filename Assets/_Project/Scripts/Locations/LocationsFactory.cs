@@ -25,8 +25,8 @@ public class LocationsFactory
         for (int i = 0; i < _config.LocationsInfo.Length; i++)
         {
             var item = _container.InstantiatePrefabForComponent<LocationItem>(_itemPrefab, _content);
-            bool isOwned = database.UnlockedLocationNames.Contains(locationsInfo[i].Name);
-            item.DisplayInfo(locationsInfo[i].Icon, locationsInfo[i].Name);
+            bool isOwned = database.UnlockedLocationNames.Contains(locationsInfo[i].Id);
+            item.DisplayInfo(locationsInfo[i].Icon, locationsInfo[i].Id);
 
             if (isOwned)
             {

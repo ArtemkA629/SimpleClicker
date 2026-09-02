@@ -43,12 +43,12 @@ public class BuildingsServicesInitializer
         foreach (var buildingInfo in _config.BuildingsInfo)
         {
             BuildingData buildingData = _buildingsDatabase.BuildingsData
-                .FirstOrDefault(d => d.Name == buildingInfo.Name);
+                .FirstOrDefault(d => d.ID == buildingInfo.Id);
             int buildingCount = buildingData == null ? 0 : buildingData.Count;
             BigInteger buildingPrice = buildingInfo.StartPrice.Multiply(Mathf.Pow(_config.PriceMultiplier, buildingCount));
             bool canBuy = buildingPrice <= _moneyCount;
             
-            _factory.SetBuildingInfo(buildingInfo.Name, buildingInfo.Icon, buildingPrice, canBuy, buildingCount);
+            _factory.SetBuildingInfo(buildingInfo.Id, buildingInfo.Icon, buildingPrice, canBuy, buildingCount);
             BuildingItem buildingItem = _factory.Create();
             buildingItems.Add(buildingItem);
         }

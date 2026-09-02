@@ -64,7 +64,7 @@ public class TutorialView : MonoBehaviour
     {
         foreach (var pagePosition in _panelPositions)
         {
-            if (pagePosition.PageInfo.Description == pageId)
+            if (pagePosition.PageInfo.Id == pageId)
             {
                 _tutorialPanel.transform.SetParent(pagePosition.Position);
                 _tutorialPanel.transform.localPosition = Vector3.zero;

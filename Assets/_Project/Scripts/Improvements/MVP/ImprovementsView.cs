@@ -15,20 +15,20 @@ public class ImprovementsView
         
         foreach (var improvementItem in improvementItems)
         {
-            UnityAction handler = () => OnItemClicked(improvementItem.Name);
+            UnityAction handler = () => OnItemClicked(improvementItem.Id);
             improvementItem.AddListener(handler);
             _improvementItemsDictionary.Add(improvementItem, handler);
         }
     }
 
-    public void DisplayNewImprovementLevel(string improvementName, int level)
+    public void DisplayNewImprovementLevel(string improvementId, int level)
     {
-        ImprovementItem item = _improvementItemsDictionary.Keys.First(x => x.Name == improvementName);
-        BigInteger improvementPrice = _presenter.GetImprovementPrice(improvementName, level + 1);
+        ImprovementItem item = _improvementItemsDictionary.Keys.First(x => x.Id == improvementId);
+        BigInteger improvementPrice = _presenter.GetImprovementPrice(improvementId, level + 1);
         bool canBuyImprovement = _presenter.CanBuyImprovement(improvementPrice);
-        bool isImprovementLevelMax = _presenter.IsLevelMax(improvementName, level);
+        bool isImprovementLevelMax = _presenter.IsLevelMax(improvementId, level);
         int descriptionLevel = isImprovementLevelMax ? level : level + 1;
-        string description = _presenter.GetDescription(improvementName, descriptionLevel);
+        string description = _presenter.GetDescription(improvementId, descriptionLevel);
         
         item.UpdateLevel(level);
         item.UpdatePrice(improvementPrice);
@@ -48,13 +48,13 @@ public class ImprovementsView
     {
         foreach (var item in _improvementItemsDictionary.Keys)
         {
-            int level = database.GetData(item.Name).Level;
-            bool isImprovementLevelMax = _presenter.IsLevelMax(item.Name, level);
+            int level = database.GetData(item.Id).Level;
+            bool isImprovementLevelMax = _presenter.IsLevelMax(item.Id, level);
             
             if (isImprovementLevelMax)
                 continue;
             
-            BigInteger price = _presenter.GetImprovementPrice(item.Name, level + 1);
+            BigInteger price = _presenter.GetImprovementPrice(item.Id, level + 1);
             bool canBuyImprovement = _presenter.CanBuyImprovement(price);
             item.UpdateCanBuyState(canBuyImprovement);
         }

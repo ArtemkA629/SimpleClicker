@@ -2,10 +2,10 @@ using System;
 
 public class PagesStateHandler
 {
-    private const string RebirthId = "Rebirth";
-    private const string BuildingsId = "Buildings";
-    private const string ImprovementsId = "Improvements";
-    private const string LocationsId = "Locations";
+    private const string RebirthId = "rebirth";
+    private const string BuildingsId = "buildings";
+    private const string ImprovementsId = "improvements";
+    private const string LocationsId = "locations";
     
     private readonly BuildingsConfig _buildingsConfig;
     private readonly ImprovementsConfig _improvementsConfig;

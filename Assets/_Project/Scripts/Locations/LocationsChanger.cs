@@ -28,29 +28,29 @@ public class LocationsChanger
     {
         LocationInfo locationInfo = _config.GetInfoByMoney(currentMoney);
         
-        if (_database.UnlockedLocationNames.Contains(locationInfo.Name) == false)
+        if (_database.UnlockedLocationNames.Contains(locationInfo.Id) == false)
         {
             foreach (LocationInfo info in _config.LocationsInfo)
             {
-                if (_database.UnlockedLocationNames.Contains(info.Name))
+                if (_database.UnlockedLocationNames.Contains(info.Id))
                     continue;
                 
-                _database.UnlockedLocationNames.Add(info.Name);
-                LocationAdded?.Invoke(info.Name);
+                _database.UnlockedLocationNames.Add(info.Id);
+                LocationAdded?.Invoke(info.Id);
                 
-                if (info.Name == locationInfo.Name)
+                if (info.Id == locationInfo.Id)
                 {
-                    SetLocation(info.Name);
+                    SetLocation(info.Id);
                     break;
                 }
             }
         }
     }
 
-    public void SetLocation(string name)
+    public void SetLocation(string id)
     {
-        Sprite lastOwnedLocationIcon = _config.GetIconByName(name);
+        Sprite lastOwnedLocationIcon = _config.GetIconById(id);
         _view.SetLocation(lastOwnedLocationIcon);
-        LocationChanged?.Invoke(name);
+        LocationChanged?.Invoke(id);
     }
 }

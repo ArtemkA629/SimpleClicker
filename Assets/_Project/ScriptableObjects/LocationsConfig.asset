@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: LocationsConfig
   m_EditorClassIdentifier: 
   <LocationsInfo>k__BackingField:
-  - <Name>k__BackingField: Default
+  - <Name>k__BackingField: default
     <Icon>k__BackingField: {fileID: 0}
     <MoneyToUnlock>k__BackingField: 0
-  - <Name>k__BackingField: Sugar
+  - <Name>k__BackingField: sugar
     <Icon>k__BackingField: {fileID: 21300000, guid: 524750a532dcf1c498c33e70a6a9a3cc, type: 3}
     <MoneyToUnlock>k__BackingField: 300
-  - <Name>k__BackingField: Milk
+  - <Name>k__BackingField: milk
     <Icon>k__BackingField: {fileID: 21300000, guid: d85a2e8841338af45869fa60be636c98, type: 3}
     <MoneyToUnlock>k__BackingField: 4000

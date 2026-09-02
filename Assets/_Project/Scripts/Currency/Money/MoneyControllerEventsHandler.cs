@@ -50,13 +50,13 @@ public class MoneyControllerEventsHandler : IDisposable
     {
         foreach (PageButton button in _pagesView.PageButtons)
         {
-            bool isLocked = _pagesStateHandler.GetPageLockedState(button.Description);
+            bool isLocked = _pagesStateHandler.GetPageLockedState(button.Id);
             button.DisplayLockedState(isLocked);
-            _pagesView.DisplayPageLockedState(button.Description, isLocked);
+            _pagesView.DisplayPageLockedState(button.Id, isLocked);
 
             if (isLocked == false)
             {
-                _pagesStateHandler.SaveUnlocked(button.Description);
+                _pagesStateHandler.SaveUnlocked(button.Id);
             }
         }
     }

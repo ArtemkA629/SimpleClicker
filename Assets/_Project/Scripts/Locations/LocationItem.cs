@@ -3,6 +3,7 @@ using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class LocationItem : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class LocationItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _moneyToUnlockText;
 
     private string _id;
+    private ILocalizationService _localizationService;
     
     public event Action<string> Clicked;
 
@@ -28,6 +30,12 @@ public class LocationItem : MonoBehaviour
         _buttonComponent.onClick.RemoveListener(OnButtonClicked);
     }
 
+    [Inject]
+    private void Construct(ILocalizationService localizationService)
+    {
+        _localizationService = localizationService;
+    }
+    
     public void DisplayLocked(BigInteger requiredMoney)
     {
         _lockPanel.SetActive(true);
@@ -42,7 +50,7 @@ public class LocationItem : MonoBehaviour
     public void DisplayInfo(Sprite icon, string id)
     {
         _icon.sprite = icon;
-        _nameText.text = id;
+        _nameText.text = _localizationService.GetText(id);
         _id = id;
     }
     

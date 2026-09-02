@@ -19,8 +19,8 @@
         }
     }
     
-    private void OnItemClicked(string name)
+    private void OnItemClicked(string id)
     {
-        _locationsChanger.SetLocation(name);
+        _locationsChanger.SetLocation(id);
     }
 }

@@ -30,7 +30,7 @@ public class OfflineIncomeService
     public void AddOfflineIncome()
     {
         ImprovementSaveData saveData = _improvementsModel
-            .GetImprovementData(_offlineIncomeConfigInfo.TypeConfig.Name);
+            .GetImprovementData(_offlineIncomeConfigInfo.TypeConfig.Id);
         
         if (saveData == null || saveData.Level == 0)
             return;

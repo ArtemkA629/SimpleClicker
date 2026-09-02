@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "ScriptableObject/BuildingsConfig", fileName = "BuildingsConfig")]
 public class BuildingsConfig : ScriptableObject
@@ -15,7 +16,7 @@ public class BuildingsConfig : ScriptableObject
     
     public BuildingInfo GetBuildingInfo(string buildingName)
     {
-        return BuildingsInfo.FirstOrDefault(i => i.Name  == buildingName);
+        return BuildingsInfo.FirstOrDefault(i => i.Id  == buildingName);
     }
 
     public BuildingsDatabase GetDefaultDatabase()
@@ -24,7 +25,7 @@ public class BuildingsConfig : ScriptableObject
 
         foreach (BuildingInfo info in BuildingsInfo)
         {
-            buildingsData.Add(new BuildingData(info.Name, 0));
+            buildingsData.Add(new BuildingData(info.Id, 0));
         }
 
         var dataBase = new BuildingsDatabase();
@@ -37,7 +38,9 @@ public class BuildingsConfig : ScriptableObject
 public class BuildingInfo
 {
     [field: SerializeField] public Sprite Icon { get; private set; }
-    [field: SerializeField] public string Name { get; private set; }
+    
+    [field: FormerlySerializedAs("<Name>k__BackingField")] 
+    [field: SerializeField] public string Id { get; private set; }
 
     [SerializeField] public string _startPrice;
     [SerializeField] public string _incomePerSecond;

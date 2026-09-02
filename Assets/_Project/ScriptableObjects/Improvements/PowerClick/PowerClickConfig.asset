@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 0
   <Icon>k__BackingField: {fileID: 21300000, guid: b36fb541e13d3934181febee7c895da2, type: 3}
-  <Name>k__BackingField: Power click
-  <DescriptionTemplate>k__BackingField: Makes your click {PowerMultiplier} times
-    more powerful.
+  <Id>k__BackingField: power_click
+  <DescriptionTemplateId>k__BackingField: power_click_description

@@ -29,11 +29,11 @@ public class LocationsChangerEventsHandler : IDisposable
         _locationsChanger.LocationChanged -= OnLocationChanged;
     }
     
-    private void OnLocationAdded(string name)
+    private void OnLocationAdded(string id)
     {
         foreach (LocationItem item in _items)
         {
-            if (item.Id == name)
+            if (item.Id == id)
             {
                 item.DisplayUnlocked();
                 break;

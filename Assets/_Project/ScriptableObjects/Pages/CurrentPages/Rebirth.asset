@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Number>k__BackingField: 1
   <Sprite>k__BackingField: {fileID: 21300000, guid: b7c82dc0265d8a048b6a175f9def5c6c, type: 3}
-  <Description>k__BackingField: Rebirth
-  <TutorialDescription>k__BackingField: Reborn to earn money even faster. Resets
-    your current progress!
+  <Id>k__BackingField: rebirth
+  <TutorialDescriptionId>k__BackingField: rebirth_description

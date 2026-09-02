@@ -5,16 +5,19 @@ public class ImprovementItemsFactory
 {
     private readonly Transform _itemsParent;
     private readonly DiContainer _container;
+    private readonly ILocalizationService _localizationService;
     private readonly ImprovementsConfig _config;
 
     private ImprovementConfigInfo _currentImprovementInfo;
     private ImprovementSaveData _saveData;
     private bool _canBuyImprovement;
     
-    public ImprovementItemsFactory(Transform itemsParent, DiContainer container, IConfigProvider configProvider)
+    public ImprovementItemsFactory(Transform itemsParent, DiContainer container, 
+        ILocalizationService localizationService, IConfigProvider configProvider)
     {
         _itemsParent = itemsParent;
         _container = container;
+        _localizationService = localizationService;
         _config = configProvider.Get<ImprovementsConfig>();
     }
     
@@ -32,11 +35,12 @@ public class ImprovementItemsFactory
         IImprovementLevelInfoConfig levelInfoConfig = (IImprovementLevelInfoConfig)_currentImprovementInfo.LevelInfoConfig;
         IImprovementDescriptionCreator descriptionCreator = typeConfig.Type.GetDescriptionCreator();
         int nextLevelImprovement = _saveData.Level == levelInfoConfig.LevelsInfo.Length ? _saveData.Level : _saveData.Level + 1;
-        string description = descriptionCreator.GetDescription(typeConfig.DescriptionTemplate, levelInfoConfig.GetLevelInfo(nextLevelImprovement));
+        string localizationTemplate = _localizationService.GetText(typeConfig.DescriptionTemplateId);
+        string description = descriptionCreator.GetDescription(localizationTemplate, levelInfoConfig.GetLevelInfo(nextLevelImprovement));
         
         item.SetInfo(
             typeConfig.Icon, 
-            typeConfig.Name, 
+            typeConfig.Id, 
             description, 
             _saveData.Level, 
             levelInfoConfig.GetPriceByLevel(nextLevelImprovement));

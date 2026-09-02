@@ -17,7 +17,7 @@ public class BuildingsView : IDisposable
         
         foreach (BuildingItem buildingItem in buildingItems)
         {
-            string itemName = buildingItem.Name;
+            string itemName = buildingItem.Id;
             UnityAction handler = () => OnItemClicked(itemName);
             _buildingItemsHandlers[buildingItem] = handler;
             buildingItem.AddListener(handler);
@@ -40,7 +40,7 @@ public class BuildingsView : IDisposable
         
         foreach (var (buildingItem, action) in _buildingItemsHandlers)
         {
-            if (buildingItem.Name == data.Name)
+            if (buildingItem.Id == data.ID)
             {
                 buildingItem.UpdateCount(data.Count);
                 buildingFound = true;
@@ -51,7 +51,7 @@ public class BuildingsView : IDisposable
         if (buildingFound)
             return;
         
-        Debug.LogWarning("Building with name " + data.Name + " not found");
+        Debug.LogWarning("Building with name " + data.ID + " not found");
     }
 
     public void UpdateBuildingsPrices(BigInteger moneyAmount)
@@ -69,8 +69,8 @@ public class BuildingsView : IDisposable
 
     private void UpdatePrice(BuildingItem buildingItem, BigInteger moneyAmount)
     {
-        BuildingInfo info = _presenter.GetBuildingInfo(buildingItem.Name);
-        BuildingData data = _presenter.GetBuildingData(buildingItem.Name);
+        BuildingInfo info = _presenter.GetBuildingInfo(buildingItem.Id);
+        BuildingData data = _presenter.GetBuildingData(buildingItem.Id);
         BigInteger totalPrice = info.StartPrice.Multiply(Mathf.Pow(_presenter.BuildingsPriceMultiplier, data.Count));
         buildingItem.UpdatePrice(totalPrice, totalPrice <= moneyAmount);
     }

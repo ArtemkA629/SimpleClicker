@@ -20,7 +20,7 @@ public class PassiveIncomeController : ITickable
     
     public void Initialize()
     {
-        _view.DisplayTotalIncome(_model.TotalIncome);
+        _view.DisplayPassiveIncome(_model.TotalIncome);
     }
     
     public void Tick()
@@ -37,12 +37,12 @@ public class PassiveIncomeController : ITickable
     public void AddIncome(string addedBuildingName)
     {
         _model.AddBuilding(addedBuildingName);
-        _view.DisplayTotalIncome(_model.TotalIncome);
+        _view.DisplayPassiveIncome(_model.TotalIncome);
     }
     
     public void RemoveAllIncome()
     {
         _model.RemoveAll();
-        _view.DisplayTotalIncome(_model.TotalIncome);
+        _view.DisplayPassiveIncome(_model.TotalIncome);
     }
 }

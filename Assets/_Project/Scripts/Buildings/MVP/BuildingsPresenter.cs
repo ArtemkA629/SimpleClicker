@@ -52,7 +52,7 @@ public class BuildingsPresenter
 
     public BuildingInfo GetBuildingInfo(string buildingName)
     {
-        return _buildingsConfig.BuildingsInfo.FirstOrDefault(i => i.Name == buildingName);
+        return _buildingsConfig.BuildingsInfo.FirstOrDefault(i => i.Id == buildingName);
     }
     
     private BigInteger GetBuildingTotalPrice(string buildingName)

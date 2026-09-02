@@ -15,6 +15,7 @@ public class GameplayEntryPoint : IInitializable
     private readonly ShopServicesInitializer _shopServicesInitializer;
     private readonly AudioInitializer _audioInitializer;
     private readonly TutorialInitializer _tutorialInitializer;
+    private readonly LocalizationServicesInitializer _localizationServicesInitializer;
     
     public GameplayEntryPoint(ClickerServicesInitializer clickerServicesInitializer, 
         MoneyServicesInitializer moneyServicesInitializer, GemsServicesInitializer gemsServicesInitializer,
@@ -24,7 +25,7 @@ public class GameplayEntryPoint : IInitializable
         DailyRewardServicesInitializer dailyRewardServicesInitializer,
         TemporaryBoostServicesInitializer temporaryBoostServicesInitializer, 
         ShopServicesInitializer shopServicesInitializer, AudioInitializer audioInitializer,
-        TutorialInitializer tutorialInitializer)
+        TutorialInitializer tutorialInitializer, LocalizationServicesInitializer localizationServicesInitializer)
     {
         _clickerServicesInitializer = clickerServicesInitializer;
         _moneyServicesInitializer = moneyServicesInitializer;
@@ -39,6 +40,7 @@ public class GameplayEntryPoint : IInitializable
         _shopServicesInitializer = shopServicesInitializer;
         _audioInitializer = audioInitializer;
         _tutorialInitializer = tutorialInitializer;
+        _localizationServicesInitializer = localizationServicesInitializer;
     }
 
     public void Initialize()
@@ -46,6 +48,7 @@ public class GameplayEntryPoint : IInitializable
         _clickerServicesInitializer.Initialize();
         _moneyServicesInitializer.Initialize();
         _gemsServicesInitializer.Initialize();
+        _localizationServicesInitializer.Initialize();
         _pagesServicesInitializer.Initialize();
         _buildingsServicesInitializer.Initialize();
         _locationsServicesInitializer.Initialize();

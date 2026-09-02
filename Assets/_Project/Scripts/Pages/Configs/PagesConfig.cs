@@ -10,7 +10,7 @@ public class PagesConfig : ScriptableObject
     public PagesDatabase GetDefaultUnlockedPages()
     {
         var database = new PagesDatabase();
-        database.UnlockedPages.Add(PagesInfo[PageAtStartNumber - 1].Description);
+        database.UnlockedPages.Add(PagesInfo[PageAtStartNumber - 1].Id);
         return database;
     }
 }

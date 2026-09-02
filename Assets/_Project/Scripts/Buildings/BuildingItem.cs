@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 public class BuildingItem : MonoBehaviour, ICustomButton
 {
@@ -13,7 +14,15 @@ public class BuildingItem : MonoBehaviour, ICustomButton
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private TextMeshProUGUI _countText;
 
-    public string Name { get; private set; }
+    private ILocalizationService _localizationService;
+    
+    public string Id { get; private set; }
+
+    [Inject]
+    private void Construct(ILocalizationService localizationService)
+    {
+        _localizationService = localizationService;
+    }
     
     public void AddListener(UnityAction action)
     {
@@ -25,11 +34,11 @@ public class BuildingItem : MonoBehaviour, ICustomButton
         _buttonComponent.onClick.RemoveListener(action);
     }
     
-    public void SetInfo(Sprite icon, string headerName, BigInteger price, bool canBuy, int count)
+    public void SetInfo(Sprite icon, string id, BigInteger price, bool canBuy, int count)
     {
         _icon.sprite = icon;
-        _nameText.text = headerName;
-        Name = headerName;
+        _nameText.text = _localizationService.GetText(id);
+        Id = id;
         
         UpdateCount(count);
         UpdatePrice(price, canBuy);

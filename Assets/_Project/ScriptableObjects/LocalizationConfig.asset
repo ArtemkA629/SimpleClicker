@@ -1,0 +1,307 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454f911af9464f7bb9844329372fa0b0, type: 3}
+  m_Name: LocalizationConfig
+  m_EditorClassIdentifier: 
+  _items:
+  - id: passive_income
+    languages:
+    - languageId: English
+      value: Passive income
+    - languageId: Russian
+      value: "\u041F\u0430\u0441\u0441\u0438\u0432\u043D\u044B\u0439 \u0434\u043E\u0445\u043E\u0434"
+  - id: day
+    languages:
+    - languageId: English
+      value: Day
+    - languageId: Russian
+      value: "\u0414\u0435\u043D\u044C"
+  - id: offline_income_prescription
+    languages:
+    - languageId: English
+      value: While you were out, you earned
+    - languageId: Russian
+      value: "\u041F\u043E\u043A\u0430 \u0442\u0435\u0431\u044F \u043D\u0435 \u0431\u044B\u043B\u043E,
+        \u0442\u044B \u0437\u0430\u0440\u0430\u0431\u043E\u0442\u0430\u043B"
+  - id: level
+    languages:
+    - languageId: English
+      value: Level
+    - languageId: Russian
+      value: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C"
+  - id: current_level
+    languages:
+    - languageId: English
+      value: Current level
+    - languageId: Russian
+      value: "\u0422\u0435\u043A\u0443\u0449\u0438\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+  - id: required_money
+    languages:
+    - languageId: English
+      value: Required money
+    - languageId: Russian
+      value: "\u041D\u0443\u0436\u043D\u043E \u0437\u0430\u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C"
+  - id: sugar_factory
+    languages:
+    - languageId: English
+      value: Sugar Factory
+    - languageId: Russian
+      value: "\u0421\u0430\u0445\u0430\u0440\u043D\u044B\u0439 \u0437\u0430\u0432\u043E\u0434"
+  - id: milk_factory
+    languages:
+    - languageId: English
+      value: Milk Factory
+    - languageId: Russian
+      value: "\u041C\u043E\u043B\u043E\u0447\u043D\u044B\u0439 \u0437\u0430\u0432\u043E\u0434"
+  - id: chocolate_factory
+    languages:
+    - languageId: English
+      value: Chocolate Factory
+    - languageId: Russian
+      value: "\u0428\u043E\u043A\u043E\u043B\u0430\u0434\u043D\u044B\u0439 \u0437\u0430\u0432\u043E\u0434"
+  - id: strawberry_factory
+    languages:
+    - languageId: English
+      value: Strawberry Factory
+    - languageId: Russian
+      value: "\u041A\u043B\u0443\u0431\u043D\u0438\u0447\u043D\u044B\u0439 \u0437\u0430\u0432\u043E\u0434"
+  - id: caramel_factory
+    languages:
+    - languageId: English
+      value: Caramel Factory
+    - languageId: Russian
+      value: "\u041A\u0430\u0440\u0430\u043C\u0435\u043B\u044C\u043D\u044B\u0439
+        \u0437\u0430\u0432\u043E\u0434"
+  - id: biscuit_factory
+    languages:
+    - languageId: English
+      value: Biscuit Factory
+    - languageId: Russian
+      value: "\u041F\u0435\u0447\u0435\u043D\u044C\u0435\u0432\u044B\u0439 \u0437\u0430\u0432\u043E\u0434"
+  - id: marmelade_factory
+    languages:
+    - languageId: English
+      value: Marmelade Factory
+    - languageId: Russian
+      value: "\u041C\u0430\u0440\u043C\u0435\u043B\u0430\u0434\u043D\u044B\u0439
+        \u0437\u0430\u0432\u043E\u0434"
+  - id: icecream_factory
+    languages:
+    - languageId: English
+      value: Icecream Factory
+    - languageId: Russian
+      value: "\u041C\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u044B\u0439 \u0437\u0430\u0432\u043E\u0434"
+  - id: syrup_factory
+    languages:
+    - languageId: English
+      value: Syrup Factory
+    - languageId: Russian
+      value: "\u0421\u0438\u0440\u043E\u043F\u043D\u044B\u0439 \u0437\u0430\u0432\u043E\u0434"
+  - id: cyberconfectionery_factory
+    languages:
+    - languageId: English
+      value: CyberConfectionery Factory
+    - languageId: Russian
+      value: "\u041A\u0438\u0431\u0435\u0440-\u043A\u043E\u043D\u0434\u0438\u0442\u0435\u0440\u0441\u043A\u0438\u0439
+        \u0437\u0430\u0432\u043E\u0434"
+  - id: default
+    languages:
+    - languageId: English
+      value: Default
+    - languageId: Russian
+      value: "\u041F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E"
+  - id: sugar
+    languages:
+    - languageId: English
+      value: Sugar
+    - languageId: Russian
+      value: "\u0421\u0430\u0445\u0430\u0440"
+  - id: milk
+    languages:
+    - languageId: English
+      value: Milk
+    - languageId: Russian
+      value: "\u041C\u043E\u043B\u043E\u043A\u043E"
+  - id: offline_income
+    languages:
+    - languageId: English
+      value: Offline income
+    - languageId: Russian
+      value: "\u041E\u0444\u0444\u043B\u0430\u0439\u043D \u0434\u043E\u0445\u043E\u0434"
+  - id: power_click
+    languages:
+    - languageId: English
+      value: Power click
+    - languageId: Russian
+      value: "\u0421\u0438\u043B\u0430 \u043A\u043B\u0438\u043A\u0430"
+  - id: buildings
+    languages:
+    - languageId: English
+      value: Buildings
+    - languageId: Russian
+      value: "\u0417\u0434\u0430\u043D\u0438\u044F"
+  - id: clicker
+    languages:
+    - languageId: English
+      value: Clicker
+    - languageId: Russian
+      value: "\u041A\u043B\u0438\u043A\u0435\u0440"
+  - id: improvements
+    languages:
+    - languageId: English
+      value: Improvements
+    - languageId: Russian
+      value: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u044F"
+  - id: locations
+    languages:
+    - languageId: English
+      value: Locations
+    - languageId: Russian
+      value: "\u041B\u043E\u043A\u0430\u0446\u0438\u0438"
+  - id: rebirth
+    languages:
+    - languageId: English
+      value: Rebirth
+    - languageId: Russian
+      value: "\u041F\u0435\u0440\u0435\u0440\u043E\u0436\u0434\u0435\u043D\u0438\u0435"
+  - id: offline_income_description
+    languages:
+    - languageId: English
+      value: You'll earn passive income while you're not playing ({OfflineIncomePercent}%
+        of the total daily revenue).
+    - languageId: Russian
+      value: "\u0412\u044B \u0431\u0443\u0434\u0435\u0442\u0435 \u043F\u043E\u043B\u0443\u0447\u0430\u0442\u044C
+        \u043F\u0430\u0441\u0441\u0438\u0432\u043D\u044B\u0439 \u0434\u043E\u0445\u043E\u0434,
+        \u0434\u0430\u0436\u0435 \u043A\u043E\u0433\u0434\u0430 \u043D\u0435 \u0438\u0433\u0440\u0430\u0435\u0442\u0435
+        ({OfflineIncomePercent} % \u043E\u0442 \u043E\u0431\u0449\u0435\u0439 \u0441\u0443\u0442\u043E\u0447\u043D\u043E\u0439
+        \u0432\u044B\u0440\u0443\u0447\u043A\u0438)."
+  - id: power_click_description
+    languages:
+    - languageId: English
+      value: Makes your click {PowerMultiplier} times more powerful.
+    - languageId: Russian
+      value: "\u0423\u0441\u0438\u043B\u0438\u0432\u0430\u0435\u0442 \u0432\u0430\u0448
+        \u043A\u043B\u0438\u043A \u0432 {PowerMultiplier} \u0440\u0430\u0437."
+  - id: buildings_description
+    languages:
+    - languageId: English
+      value: Build factories to earn passive income
+    - languageId: Russian
+      value: "\u0421\u0442\u0440\u043E\u0439\u0442\u0435 \u0437\u0430\u0432\u043E\u0434\u044B,
+        \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043B\u0443\u0447\u0430\u0442\u044C
+        \u043F\u0430\u0441\u0441\u0438\u0432\u043D\u044B\u0439 \u0434\u043E\u0445\u043E\u0434"
+  - id: clicker_description
+    languages:
+    - languageId: English
+      value: Click to earn money
+    - languageId: Russian
+      value: "\u041A\u043B\u0438\u043A\u0430\u0439\u0442\u0435, \u0447\u0442\u043E\u0431\u044B
+        \u0437\u0430\u0440\u0430\u0431\u0430\u0442\u044B\u0432\u0430\u0442\u044C
+        \u0434\u0435\u043D\u044C\u0433\u0438"
+  - id: improvements_description
+    languages:
+    - languageId: English
+      value: Upgrade your click and passive income
+    - languageId: Russian
+      value: "\u0423\u043B\u0443\u0447\u0448\u0430\u0439\u0442\u0435 \u0432\u0430\u0448
+        \u043A\u043B\u0438\u043A \u0438 \u043F\u0430\u0441\u0441\u0438\u0432\u043D\u044B\u0439
+        \u0434\u043E\u0445\u043E\u0434"
+  - id: locations_description
+    languages:
+    - languageId: English
+      value: Unlock new locations
+    - languageId: Russian
+      value: "\u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u043D\u043E\u0432\u044B\u0435
+        \u043B\u043E\u043A\u0430\u0446\u0438\u0438"
+  - id: rebirth_description
+    languages:
+    - languageId: English
+      value: Rebirth to get permanent bonuses
+    - languageId: Russian
+      value: "\u041F\u0435\u0440\u0435\u0440\u043E\u0434\u0438\u0442\u0435\u0441\u044C,
+        \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C
+        \u043F\u043E\u0441\u0442\u043E\u044F\u043D\u043D\u044B\u0435 \u0431\u043E\u043D\u0443\u0441\u044B"
+  - id: first_click_tutorial_description
+    languages:
+    - languageId: English
+      value: Click on the cookie to start playing.
+    - languageId: Russian
+      value: "\u041A\u043B\u0438\u043A\u043D\u0438 \u043F\u043E \u043F\u0435\u0447\u0435\u043D\u044C\u043A\u0435,
+        \u0447\u0442\u043E\u0431\u044B \u043D\u0430\u0447\u0430\u0442\u044C \u0438\u0433\u0440\u0430\u0442\u044C."
+  - id: temporary_boost_tutorial_description
+    languages:
+    - languageId: English
+      value: Click on the gold cookie to temporarily double your earnings per click.
+    - languageId: Russian
+      value: "\u041A\u043B\u0438\u043A\u043D\u0438 \u043D\u0430 \u0437\u043E\u043B\u043E\u0442\u0443\u044E
+        \u043F\u0435\u0447\u0435\u043D\u044C\u043A\u0443, \u0447\u0442\u043E\u0431\u044B
+        \u0432\u0440\u0435\u043C\u0435\u043D\u043D\u043E \u0443\u0434\u0432\u043E\u0438\u0442\u044C
+        \u0434\u043E\u0445\u043E\u0434 \u0437\u0430 \u043A\u043B\u0438\u043A."
+  - id: max_level_reached
+    languages:
+    - languageId: English
+      value: Max level reached!
+    - languageId: Russian
+      value: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u044B\u0439
+        \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0434\u043E\u0441\u0442\u0438\u0433\u043D\u0443\u0442!"
+  - id: reborn
+    languages:
+    - languageId: English
+      value: Reborn
+    - languageId: Russian
+      value: "\u041F\u0435\u0440\u0435\u0440\u043E\u0434\u0438\u0442\u044C\u0441\u044F"
+  - id: yes
+    languages:
+    - languageId: English
+      value: Yes
+    - languageId: Russian
+      value: "\u0414\u0430"
+  - id: no
+    languages:
+    - languageId: English
+      value: No
+    - languageId: Russian
+      value: "\u041D\u0435\u0442"
+  - id: rebirth_popup_description
+    languages:
+    - languageId: English
+      value: Rebirth resets all your progress. Are you sure you want to rebirth?
+    - languageId: Russian
+      value: "\u041F\u0440\u0438 \u043F\u0435\u0440\u0435\u0440\u043E\u0436\u0434\u0435\u043D\u0438\u0438
+        \u0432\u0435\u0441\u044C \u0432\u0430\u0448 \u043F\u0440\u043E\u0433\u0440\u0435\u0441\u0441
+        \u0431\u0443\u0434\u0435\u0442 \u0441\u0431\u0440\u043E\u0448\u0435\u043D.
+        \u0412\u044B \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E
+        \u0445\u043E\u0442\u0438\u0442\u0435 \u043F\u0435\u0440\u0435\u0440\u043E\u0434\u0438\u0442\u044C\u0441\u044F?"
+  - id: music
+    languages:
+    - languageId: English
+      value: Music
+    - languageId: Russian
+      value: "\u041C\u0443\u0437\u044B\u043A\u0430"
+  - id: sounds
+    languages:
+    - languageId: English
+      value: Sounds
+    - languageId: Russian
+      value: "\u0417\u0432\u0443\u043A\u0438"
+  - id: claim
+    languages:
+    - languageId: English
+      value: Claim
+    - languageId: Russian
+      value: "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u044C"
+  - id: reward
+    languages:
+    - languageId: English
+      value: 'Reward:'
+    - languageId: Russian
+      value: "\u041D\u0430\u0433\u0440\u0430\u0434\u0430:"

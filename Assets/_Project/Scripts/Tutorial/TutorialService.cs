@@ -21,6 +21,7 @@ public class TutorialService
     private readonly TemporaryBoostAnimator _temporaryBoostAnimator;
     private readonly TemporaryBoostController _temporaryBoostController;
     private readonly TemporaryBoostEventsHandler _temporaryBoostEventsHandler;
+    private readonly ILocalizationService _localizationService;
     
     private TemporaryBoost _currentTutorialBoost;
     private GameObject _currentTutorialFinger;
@@ -31,7 +32,8 @@ public class TutorialService
     public TutorialService(ISaveSystem saveSystem, GameObject fingerPrefab, 
         PagesStateHandler pagesStateHandler, IConfigProvider configProvider, PagesPresenter pagesPresenter,
         TutorialView tutorialView, TemporaryBoostSpawner temporaryBoostSpawner, TemporaryBoostAnimator temporaryBoostAnimator,
-        TemporaryBoostController temporaryBoostController, TemporaryBoostEventsHandler temporaryBoostEventsHandler)
+        TemporaryBoostController temporaryBoostController, TemporaryBoostEventsHandler temporaryBoostEventsHandler,
+        ILocalizationService localizationService)
     {
         _saveSystem = saveSystem;
         _fingerPrefab = fingerPrefab;
@@ -43,6 +45,7 @@ public class TutorialService
         _temporaryBoostAnimator = temporaryBoostAnimator;
         _temporaryBoostController = temporaryBoostController;
         _temporaryBoostEventsHandler = temporaryBoostEventsHandler;
+        _localizationService = localizationService;
         _saveData = _saveSystem.Load(SavingConstants.TutorialId, new TutorialSaveData());
     }
 
@@ -111,15 +114,15 @@ public class TutorialService
     {
         for (int i = 0; i < _pagesConfig.PagesInfo.Length; i++)
         {
-            if (_pagesConfig.PagesInfo[i].Description == pageId)
+            if (_pagesConfig.PagesInfo[i].Id == pageId)
             {
                 int pageNumber = _pagesConfig.PagesInfo[i].Number;
                 _pagesPresenter.SelectPage(pageNumber);
                 _tutorialView.MoveToPage(pageId);
                 
-                if (string.IsNullOrEmpty(_pagesConfig.PagesInfo[i].TutorialDescription) == false)
+                if (string.IsNullOrEmpty(_pagesConfig.PagesInfo[i].TutorialDescriptionId) == false)
                 {
-                    _tutorialView.Show(_pagesConfig.PagesInfo[i].TutorialDescription);
+                    _tutorialView.Show(_localizationService.GetText(_pagesConfig.PagesInfo[i].TutorialDescriptionId));
                 }
                 
                 break;
@@ -152,7 +155,8 @@ public class TutorialService
         
         _tutorialView.SetHidePanelActive(true);
         _currentTutorialFinger = SpawnFinger(boost.transform);
-        _tutorialView.Show("Click golden cookie to get your boost!");
+        //_tutorialView.Show("Click golden cookie to get your boost!");
+        _tutorialView.Show(_localizationService.GetText(LocalizationConstants.TemporaryBoostTutorialDescription));
         
         boost.Clicked += OnTutorialBoostClicked;
     }

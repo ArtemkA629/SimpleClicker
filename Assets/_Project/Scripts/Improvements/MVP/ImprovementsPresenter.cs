@@ -53,16 +53,16 @@ public class ImprovementsPresenter
         return _moneyController.Amount >= improvementPrice;
     }
 
-    public bool IsLevelMax(string improvementName, int improvementLevel)
+    public bool IsLevelMax(string improvementId, int improvementLevel)
     {
-        ImprovementConfigInfo info = _config.GetInfoByName(improvementName);
+        ImprovementConfigInfo info = _config.GetInfoByName(improvementId);
         IImprovementLevelInfoConfig levelInfoConfig = (IImprovementLevelInfoConfig)info.LevelInfoConfig;
         return levelInfoConfig.LevelsInfo.Length == improvementLevel;
     }
 
-    public string GetDescription(string improvementName, int improvementLevel)
+    public string GetDescription(string improvementId, int improvementLevel)
     {
-        ImprovementConfigInfo info = _config.GetInfoByName(improvementName);
+        ImprovementConfigInfo info = _config.GetInfoByName(improvementId);
         return info.GetDescription(improvementLevel);
     }
     

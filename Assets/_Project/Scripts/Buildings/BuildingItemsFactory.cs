@@ -8,7 +8,7 @@ public class BuildingItemsFactory
     private readonly Transform _itemsParent;
     private readonly DiContainer _container;
 
-    private string _buildingName;
+    private string _buildingId;
     private Sprite _buildingIcon;
     private BigInteger _buildingPrice;
     private bool _canBuyBuilding;
@@ -21,9 +21,9 @@ public class BuildingItemsFactory
         _container = container;
     }
 
-    public void SetBuildingInfo(string name, Sprite icon, BigInteger price, bool canBuy, int count)
+    public void SetBuildingInfo(string id, Sprite icon, BigInteger price, bool canBuy, int count)
     {
-        _buildingName = name;
+        _buildingId = id;
         _buildingIcon = icon;
         _buildingPrice = price;
         _canBuyBuilding = canBuy;
@@ -33,7 +33,7 @@ public class BuildingItemsFactory
     public BuildingItem Create()
     {
         var buildingItem = _container.InstantiatePrefabForComponent<BuildingItem>(_buildingsItemPrefab, _itemsParent);
-        buildingItem.SetInfo(_buildingIcon, _buildingName, _buildingPrice, _canBuyBuilding, _buildingCount);
+        buildingItem.SetInfo(_buildingIcon, _buildingId, _buildingPrice, _canBuyBuilding, _buildingCount);
         return buildingItem;
     }
 }

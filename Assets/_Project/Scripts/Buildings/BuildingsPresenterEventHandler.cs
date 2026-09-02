@@ -33,8 +33,8 @@ public class BuildingsPresenterEventHandler : IDisposable
     private void OnBuildingBought(BuildingData data)
     {
         BuildingsDatabase buildingsDatabase = _saveSystem.Load(SavingConstants.BoughtBuildingsId, _buildingsConfig.GetDefaultDatabase());
-        BuildingData currentData = buildingsDatabase.BuildingsData.FirstOrDefault(d => d.Name == data.Name);
-        _passiveIncomeController.AddIncome(currentData.Name);
+        BuildingData currentData = buildingsDatabase.BuildingsData.FirstOrDefault(d => d.ID == data.ID);
+        _passiveIncomeController.AddIncome(currentData.ID);
         UpdateSaveDataByAdding(currentData, buildingsDatabase);
     }
 

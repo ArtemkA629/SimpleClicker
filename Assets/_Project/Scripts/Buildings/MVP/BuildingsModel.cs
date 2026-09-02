@@ -17,7 +17,7 @@ public class BuildingsModel
 
     public BuildingData GetBuildingData(string buildingName)
     {
-        return _buildingsDatabase.BuildingsData.FirstOrDefault(d => d.Name == buildingName);
+        return _buildingsDatabase.BuildingsData.FirstOrDefault(d => d.ID == buildingName);
     }
     
     public void AddBuilding(string buildingName)

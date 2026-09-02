@@ -69,7 +69,7 @@ public class AudioService : ITickable
         if (!_saveData.SfxEnabled || clip == null)
             return;
 
-        GameObject soundObject = new GameObject("Sound_" + clip.name);
+        GameObject soundObject = new GameObject("Sound " + clip.name);
         soundObject.transform.SetParent(_soundsParent);
         
         AudioSource audioSource = soundObject.AddComponent<AudioSource>();

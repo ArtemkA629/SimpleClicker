@@ -4,18 +4,18 @@ using UnityEngine;
 [Serializable]
 public class BuildingData
 {
-    [SerializeField] private string _name;
+    [SerializeField] private string _id;
     [SerializeField] private int _count;
 
-    public BuildingData(string name, int count)
+    public BuildingData(string id, int count)
     {
-        if (string.IsNullOrEmpty(name))
+        if (string.IsNullOrEmpty(id))
         {
             Debug.Log("The name is empty");
             return;
         }
         
-        _name = name;
+        _id = id;
 
         if (count < 0)
         {
@@ -42,6 +42,6 @@ public class BuildingData
         _count = 0;
     }
     
-    public string Name => _name;
+    public string ID => _id;
     public int Count => _count;
 }

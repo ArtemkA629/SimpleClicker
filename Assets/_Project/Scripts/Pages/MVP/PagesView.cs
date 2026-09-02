@@ -63,7 +63,7 @@ public class PagesView : MonoBehaviour, IDisposable
     {
         foreach (PageViewInfo viewInfo in _pageViewInfos)
         {
-            if (viewInfo.Info.Description == pageId)
+            if (viewInfo.Info.Id == pageId)
             {
                 viewInfo.LockPanel.SetActive(isLocked);
                 break;

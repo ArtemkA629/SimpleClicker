@@ -21,7 +21,7 @@ public class PowerClickInfoHandler
     
     public float GetPowerClickMultiplier()
     {
-        int currentLevel = _improvementsModel.GetImprovementData(_powerClickInfo.TypeConfig.Name).Level;
+        int currentLevel = _improvementsModel.GetImprovementData(_powerClickInfo.TypeConfig.Id).Level;
         var levelInfoConfig = (IImprovementLevelInfoConfig)_powerClickInfo.LevelInfoConfig;
         PowerClickLevelInfo levelInfo = (PowerClickLevelInfo)levelInfoConfig.GetLevelInfo(currentLevel);
         float powerClickMultiplier = levelInfo == null ? 1 : levelInfo.PowerClickMultiplier;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "LocationsConfig", menuName = "ScriptableObject/LocationsConfig")]
 public class LocationsConfig : ScriptableObject
@@ -14,7 +15,7 @@ public class LocationsConfig : ScriptableObject
     {
         return new LocationsDatabase()
         {
-            UnlockedLocationNames = new List<string>() { LocationsInfo[0].Name }
+            UnlockedLocationNames = new List<string>() { LocationsInfo[0].Id }
         };
     }
 
@@ -37,16 +38,18 @@ public class LocationsConfig : ScriptableObject
         return locationInfo;
     }
     
-    public Sprite GetIconByName(string locationName)
+    public Sprite GetIconById(string locationId)
     {
-        return Array.Find(LocationsInfo, info => info.Name == locationName).Icon;
+        return Array.Find(LocationsInfo, info => info.Id == locationId).Icon;
     }
 }
 
 [Serializable]
 public struct LocationInfo
 {
-    [field: SerializeField] public string Name { get; private set; }
+    [field: FormerlySerializedAs("<Name>k__BackingField")] 
+    [field: SerializeField] public string Id { get; private set; }
+    
     [field: SerializeField] public Sprite Icon { get; private set; }
     [field: SerializeField] public string MoneyToUnlock { get; private set; }
 }

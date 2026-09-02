@@ -16,19 +16,23 @@ public class PageButton : MonoBehaviour, ICustomButton
     [SerializeField] private Button _buttonComponent;
     [SerializeField] private Image _icon;
     [SerializeField] private Image _lockPanel;
-    [FormerlySerializedAs("_description")] [SerializeField] private TextMeshProUGUI _descriptionText;
+    
+    [FormerlySerializedAs("_description")] 
+    [SerializeField] private TextMeshProUGUI _descriptionText;
 
+    private ILocalizationService _localizationService;
     private PagesViewConfig _pagesViewConfig;
     private Vector2 _initialSizeDelta;
-    private string _description;
+    private string _id;
     private bool _isSelected;
     
-    public string Description => _description;
+    public string Id => _id;
     
     [Inject]
-    private void Construct(IConfigProvider configProvider)
+    private void Construct(IConfigProvider configProvider, ILocalizationService localizationService)
     {
         _pagesViewConfig = configProvider.Get<PagesViewConfig>();
+        _localizationService = localizationService;
     }
 
     public void Initialize()
@@ -47,11 +51,11 @@ public class PageButton : MonoBehaviour, ICustomButton
         Number = number;
     }
     
-    public void SetUI(Sprite iconSprite, string description)
+    public void SetUI(Sprite iconSprite, string id)
     {
         _icon.sprite = iconSprite;
-        _descriptionText.text = description;
-        _description = description; 
+        _descriptionText.text = _localizationService.GetText(id);
+        _id = id; 
     }
 
     public void DisplaySelected(bool isSelected)
