@@ -7,8 +7,8 @@
         false,
         false
     ],
-    "idSave": 247,
-    "Money": "540",
+    "idSave": 373,
+    "Money": "17322",
     "Gems": 0,
     "Buildings": {
         "BuildingsData": [
@@ -66,7 +66,7 @@
             }
         ]
     },
-    "LastLoginTime": "2026-09-03T10:06:44.1483288Z",
+    "LastLoginTime": "2026-09-03T14:55:19.6649299Z",
     "Rebirth": {
         "RebirthData": {
             "_rebirthLevel": 0
@@ -75,10 +75,11 @@
     "Locations": {
         "UnlockedLocationNames": [
             "default",
-            "sugar"
+            "sugar",
+            "milk"
         ]
     },
-    "SelectedLocation": "sugar",
+    "SelectedLocation": "milk",
     "UnlockedPages": {
         "_unlockedPages": [
             "clicker",

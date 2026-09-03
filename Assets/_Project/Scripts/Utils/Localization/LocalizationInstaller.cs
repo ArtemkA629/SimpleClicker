@@ -11,8 +11,7 @@ public class LocalizationInstaller : MonoInstaller
 
     private void BindLocalizationService()
     {
-        Container.Bind<ILocalizationService>()
-            .To<YGLocalizationService>()
+        Container.BindInterfacesAndSelfTo<YGLocalizationService>()
             .AsSingle();
     }
 

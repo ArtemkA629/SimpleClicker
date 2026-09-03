@@ -3,12 +3,12 @@ using System;
 
 public class ShopServicesInitializer : IDisposable
 {
-    private readonly IShopPurchaseService _purchaseService;
+    private readonly YGShopPurchaseService _purchaseService;
     private readonly ShopItemsFactory _itemsFactory;
     
     private List<ShopItem> _createdItems;
 
-    public ShopServicesInitializer(IShopPurchaseService purchaseService, ShopItemsFactory itemsFactory)
+    public ShopServicesInitializer(YGShopPurchaseService purchaseService, ShopItemsFactory itemsFactory)
     {
         _purchaseService = purchaseService;
         _itemsFactory = itemsFactory;
@@ -22,6 +22,8 @@ public class ShopServicesInitializer : IDisposable
         {
             item.PurchaseRequested += _purchaseService.Purchase;
         }
+        
+        _purchaseService.Initialize();
     }
 
     public void Dispose()

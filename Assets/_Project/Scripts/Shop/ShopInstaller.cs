@@ -14,7 +14,7 @@ public class ShopInstaller : MonoInstaller
 
     private void BindPurchaseService()
     {
-        Container.BindInterfacesTo<YGShopPurchaseService>()
+        Container.BindInterfacesAndSelfTo<YGShopPurchaseService>()
             .AsSingle();
     }
 

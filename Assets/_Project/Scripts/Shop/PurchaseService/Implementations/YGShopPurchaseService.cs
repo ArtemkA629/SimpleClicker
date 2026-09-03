@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using YG;using Zenject;
 
-public class YGShopPurchaseService : IInitializable, IDisposable, IShopPurchaseService
+public class YGShopPurchaseService : IDisposable, IShopPurchaseService
 {
     private readonly MoneyController _moneyController;
     private readonly ShopConfig _shopConfig;
