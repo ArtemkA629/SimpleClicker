@@ -7,8 +7,8 @@
         false,
         false
     ],
-    "idSave": 164,
-    "Money": "337",
+    "idSave": 247,
+    "Money": "540",
     "Gems": 0,
     "Buildings": {
         "BuildingsData": [
@@ -66,7 +66,7 @@
             }
         ]
     },
-    "LastLoginTime": "2026-09-03T08:33:30.8151482Z",
+    "LastLoginTime": "2026-09-03T10:06:44.1483288Z",
     "Rebirth": {
         "RebirthData": {
             "_rebirthLevel": 0
@@ -83,7 +83,8 @@
         "_unlockedPages": [
             "clicker",
             "buildings",
-            "locations"
+            "locations",
+            "improvements"
         ]
     },
     "DailyReward": {
