@@ -15,11 +15,11 @@ public class AudioInitializer : IDisposable
     {
         _audioService.Initialize();
         
-        _view.MusicToggleClicked += _audioService.ToggleMusic;
-        _view.SfxToggleClicked += _audioService.ToggleSfx;
-        
         _view.SetMusicToggleState(_audioService.MusicEnabled);
         _view.SetSfxToggleState(_audioService.SfxEnabled);
+        
+        _view.MusicToggleClicked += _audioService.ToggleMusic;
+        _view.SfxToggleClicked += _audioService.ToggleSfx;
     }
 
     public void Dispose()

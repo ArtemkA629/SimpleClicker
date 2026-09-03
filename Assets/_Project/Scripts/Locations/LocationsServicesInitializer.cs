@@ -1,4 +1,6 @@
-﻿public class LocationsServicesInitializer
+﻿using UnityEngine;
+
+public class LocationsServicesInitializer
 {
     private readonly LocationsChanger _locationsChanger;
     private readonly LocationsChangerEventsHandler _locationsChangerEventsHandler;
@@ -20,6 +22,7 @@
         _moneyModel = moneyModel;
         LocationsConfig config = configProvider.Get<LocationsConfig>();
         _database = saveSystem.Load(SavingConstants.LocationsId, config.GetDefaultDatabase());
+        Debug.Log(_database == null);
         _lastOwnedLocationName = saveSystem.Load(SavingConstants.SelectedLocationId, _database.UnlockedLocationNames[0]);
     }
         

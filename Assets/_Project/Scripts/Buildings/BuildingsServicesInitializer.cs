@@ -12,7 +12,7 @@ public class BuildingsServicesInitializer
     private readonly PassiveIncomeController _passiveIncomeController;
     private readonly BuildingsConfig _config;
     private readonly BuildingsDatabase _buildingsDatabase;
-    private readonly int _moneyCount;
+    private readonly string _moneyCount;
     
     public BuildingsServicesInitializer(BuildingsView view, BuildingsPresenter presenter, BuildingItemsFactory factory,
         BuildingsPresenterEventHandler presenterEventsHandler, PassiveIncomeController passiveIncomeController, 
@@ -25,7 +25,7 @@ public class BuildingsServicesInitializer
         _passiveIncomeController = passiveIncomeController;
         _config = configProvider.Get<BuildingsConfig>();
         _buildingsDatabase = saveSystem.Load(SavingConstants.BoughtBuildingsId, _config.GetDefaultDatabase());
-        _moneyCount = saveSystem.Load<int>(SavingConstants.MoneyId);
+        _moneyCount = saveSystem.Load<string>(SavingConstants.MoneyId);
     }
 
     public void Initialize()
@@ -46,7 +46,7 @@ public class BuildingsServicesInitializer
                 .FirstOrDefault(d => d.ID == buildingInfo.Id);
             int buildingCount = buildingData == null ? 0 : buildingData.Count;
             BigInteger buildingPrice = buildingInfo.StartPrice.Multiply(Mathf.Pow(_config.PriceMultiplier, buildingCount));
-            bool canBuy = buildingPrice <= _moneyCount;
+            bool canBuy = buildingPrice <= BigIntegerStatic.Parse(_moneyCount);
             
             _factory.SetBuildingInfo(buildingInfo.Id, buildingInfo.Icon, buildingPrice, canBuy, buildingCount);
             BuildingItem buildingItem = _factory.Create();

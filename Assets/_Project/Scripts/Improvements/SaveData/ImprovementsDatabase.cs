@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
+[Serializable]
 public class ImprovementsDatabase
 {
-    public List<ImprovementSaveData> ImprovementsData;
+    public List<ImprovementSaveData> ImprovementsData = new();
 
     public ImprovementSaveData GetData(string improvementName)
     {

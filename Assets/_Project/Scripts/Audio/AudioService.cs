@@ -52,14 +52,14 @@ public class AudioService : ITickable
 
     public void ToggleMusic()
     {
-        _saveData.SetMusicEnabled(!_saveData.MusicEnabled);
+        _saveData.SetMusicEnabled(_saveData.MusicEnabled == false);
         ApplyMusicVolume();
         SaveSettings();
     }
 
     public void ToggleSfx()
     {
-        _saveData.SetSfxEnabled(!_saveData.SfxEnabled);
+        _saveData.SetSfxEnabled(_saveData.SfxEnabled == false);
         ApplySfxVolume();
         SaveSettings();
     }

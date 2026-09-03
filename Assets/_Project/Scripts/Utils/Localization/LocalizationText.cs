@@ -36,7 +36,6 @@ public class LocalizationText : MonoBehaviour
         
         if (_textUI != null)
         {
-            Debug.Log(text);
             _textUI.text = text;
         }
     }

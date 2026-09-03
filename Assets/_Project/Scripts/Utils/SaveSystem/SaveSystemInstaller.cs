@@ -1,4 +1,4 @@
-﻿using Zenject;
+using Zenject;
 
 public class SaveSystemInstaller : MonoInstaller
 {
@@ -10,7 +10,7 @@ public class SaveSystemInstaller : MonoInstaller
     private void BindSaveSystem()
     {
         Container.Bind<ISaveSystem>()
-            .To<JsonUtilitySaveSystem>()
+            .To<YGSaveSystem>()
             .AsSingle();
     }
 }

@@ -1,0 +1,104 @@
+{
+    "intExample": 5,
+    "strExample": "Hello!",
+    "boolExample": [
+        false,
+        false,
+        false,
+        false
+    ],
+    "idSave": 164,
+    "Money": "337",
+    "Gems": 0,
+    "Buildings": {
+        "BuildingsData": [
+            {
+                "_id": "sugar_factory",
+                "_count": 3
+            },
+            {
+                "_id": "milk_factory",
+                "_count": 0
+            },
+            {
+                "_id": "chocolate_factory",
+                "_count": 0
+            },
+            {
+                "_id": "strawberry_factory",
+                "_count": 0
+            },
+            {
+                "_id": "caramel_factory",
+                "_count": 0
+            },
+            {
+                "_id": "biscuit_factory",
+                "_count": 0
+            },
+            {
+                "_id": "marmelade_factory",
+                "_count": 0
+            },
+            {
+                "_id": "icecream_factory",
+                "_count": 0
+            },
+            {
+                "_id": "syrup_factory",
+                "_count": 0
+            },
+            {
+                "_id": "cyberconfectionery_factory",
+                "_count": 0
+            }
+        ]
+    },
+    "Improvements": {
+        "ImprovementsData": [
+            {
+                "_name": "power_click",
+                "_level": 0
+            },
+            {
+                "_name": "offline_income",
+                "_level": 0
+            }
+        ]
+    },
+    "LastLoginTime": "2026-09-03T08:33:30.8151482Z",
+    "Rebirth": {
+        "RebirthData": {
+            "_rebirthLevel": 0
+        }
+    },
+    "Locations": {
+        "UnlockedLocationNames": [
+            "default",
+            "sugar"
+        ]
+    },
+    "SelectedLocation": "sugar",
+    "UnlockedPages": {
+        "_unlockedPages": [
+            "clicker",
+            "buildings",
+            "locations"
+        ]
+    },
+    "DailyReward": {
+        "_currentDay": 1,
+        "_claimedDays": [
+            1
+        ],
+        "_allRewardsClaimed": false
+    },
+    "Audio": {
+        "_musicEnabled": false,
+        "_sfxEnabled": true
+    },
+    "Tutorial": {
+        "_step": 1,
+        "_firstGoldenCookieSpawned": false
+    }
+}
